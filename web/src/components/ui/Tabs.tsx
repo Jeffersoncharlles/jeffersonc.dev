@@ -26,7 +26,7 @@ export function Tabs({
   const [activeIdx, setActiveIdx] = useState<number>(0);
 
   return (
-    <div
+    <nav
       className={cn(
         "flex flex-wrap items-center justify-center relative max-w-full w-full",
         containerClassName
@@ -59,7 +59,7 @@ export function Tabs({
           <span className="relative block text-neutral-300">{tab.title}</span>
         </button>
       ))}
-    </div>
+    </nav>
   );
 }
 
