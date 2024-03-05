@@ -6,6 +6,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 import { cn } from "@/utils/cn";
+import Link from "next/link";
 
 type Tab = {
   title: string;
@@ -33,7 +34,7 @@ export function Tabs({
       )}
     >
       {tabs.map((tab, index) => (
-        <button
+        <Link href={tab.value}
           key={tab.title}
           onClick={() => setActiveIdx(index)}
           className={cn(
@@ -57,7 +58,7 @@ export function Tabs({
           )}
 
           <span className="relative block text-neutral-300">{tab.title}</span>
-        </button>
+        </Link>
       ))}
     </nav>
   );

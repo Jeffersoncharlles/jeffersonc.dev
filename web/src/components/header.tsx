@@ -7,18 +7,22 @@ export function Header() {
   const tabs = [
     {
       title: "Home",
-      value: "home",
+      value: "/",
     },
     {
       title: "Services",
       value: "services",
     },
     {
-      title: "Project",
-      value: "project",
+      title: "Projetos",
+      value: "projects",
     },
     {
-      title: "About",
+      title: "Contato",
+      value: "contact",
+    },
+    {
+      title: "Sobre",
       value: "about",
     },
   ];
