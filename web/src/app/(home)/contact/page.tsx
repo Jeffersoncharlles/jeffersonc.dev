@@ -4,20 +4,27 @@ import { InputFocusBlur } from "@/components/ui/InputFocusBlur";
 
 export default function Blog() {
   return (
-    <section className="grid grid-cols-2 w-full gap-8 mt-12">
-      <div className="">
+    <section className="flex md:flex-row justify-between  flex-col mt-12">
+      <div className=" w-[50%]">
         <Icon />
       </div>
-      <div className="w-[50%] border flex flex-col  items-end ">
-        <h1 className="text-2xl text-violet-500">Contato</h1>
-
-        <div className="">
-          <InputFocusBlur type="text" name="Name" placeholder="Digite seu nome" />
-          <InputFocusBlur type="email" name="email" placeholder="Digite seu email" />
-          <InputFocusBlur type="tel" name="phone" placeholder="Digite seu Numero de telefone" />
+      <form className="flex-1  flex flex-col items-center p-10">
+        <h1 className="text-4xl text-violet-200">Contato</h1>
+        <div className="mt-10 flex justify-center items-center flex-col  w-full h-full space-y-4 ">
+          <InputFocusBlur
+            type="text"
+            name="Name"
+            placeholder="Digite seu nome"
+          />
+          <InputFocusBlur
+            type="email"
+            name="email"
+            placeholder="Digite seu email"
+          />
+          <textarea className="resize-none bg-zinc-900 rounded-lg w-[480px] h-[240px] text-zinc-300 mb-6" value="" />
         </div>
 
-      </div>
+      </form>
     </section>
   );
 }

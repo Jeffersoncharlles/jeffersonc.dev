@@ -8,6 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        editor: "3.5rem 16rem 1fr"
+      },
+      gridTemplateRows: {
+        layout: "2rem 1fr 1.5rem"
+      },
       animation: {
         flip: "flip 6s infinite steps(2, end)",
         rotate: "rotate 3s linear infinite both",
