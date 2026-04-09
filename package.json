@@ -1,21 +1,33 @@
 {
   "name": "jeffersonc.dev",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "postinstall": "pnpm payload:fix",
+    "payload:fix": "pnpm payload manage:next-files && pnpm payload generate:importmap && pnpm payload generate:types",
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "3.82.1",
+    "@payloadcms/next": "3.82.1",
+    "@payloadcms/richtext-lexical": "3.82.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
+    "lefthook": "^2.1.5",
     "lucide-react": "^1.7.0",
     "motion": "^12.38.0",
     "next": "16.2.2",
+    "payload": "3.82.1",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",

@@ -103,7 +103,6 @@ type AsideProps = {
 };
 
 export function Aside({ isMobileOpen }: AsideProps) {
-
   const srcContents = (
     <>
       <Folder
@@ -115,7 +114,11 @@ export function Aside({ isMobileOpen }: AsideProps) {
       >
         <FileItem name="links" icon={LinkIcon} iconColor="text-dracula-cyan" />
         <FileItem name="social" icon={QrCode} iconColor="text-dracula-green" />
-        <FileItem name="status" icon={Activity} iconColor="text-dracula-yellow" />
+        <FileItem
+          name="status"
+          icon={Activity}
+          iconColor="text-dracula-yellow"
+        />
       </Folder>
 
       <Folder
@@ -125,8 +128,16 @@ export function Aside({ isMobileOpen }: AsideProps) {
         openIconColor="text-dracula-purple"
         defaultOpen
       >
-        <FileItem name="application" icon={Award} iconColor="text-dracula-orange" />
-        <FileItem name="domain" icon={GraduationCap} iconColor="text-dracula-pink" />
+        <FileItem
+          name="application"
+          icon={Award}
+          iconColor="text-dracula-orange"
+        />
+        <FileItem
+          name="domain"
+          icon={GraduationCap}
+          iconColor="text-dracula-pink"
+        />
       </Folder>
 
       <Folder
@@ -153,7 +164,11 @@ export function Aside({ isMobileOpen }: AsideProps) {
         defaultOpen
       >
         <FileItem name="projects" icon={Code} iconColor="text-dracula-pink" />
-        <FileItem name="demos" icon={PlayCircle} iconColor="text-dracula-cyan" />
+        <FileItem
+          name="demos"
+          icon={PlayCircle}
+          iconColor="text-dracula-cyan"
+        />
       </Folder>
 
       <Link href="/blog" className="block w-full">
@@ -167,19 +182,11 @@ export function Aside({ isMobileOpen }: AsideProps) {
       className={`h-full backdrop-blur-[10px] border-r border-border flex flex-col py-3 shrink-0 overflow-y-auto overflow-x-hidden whitespace-nowrap bg-background/95 lg:bg-transparent absolute lg:static top-0 left-0 z-40 transition-transform duration-300 w-52 lg:w-55 ${isMobileOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
     >
       <div className="flex flex-col">
-        <Folder
-          name="src"
-          icon={FolderIcon}
-          defaultOpen
-        >
+        <Folder name="src" icon={FolderIcon} defaultOpen>
           {srcContents}
         </Folder>
 
-        <Folder
-          name="node_modules"
-          icon={FolderIcon}
-          defaultOpen={false}
-        >
+        <Folder name="node_modules" icon={FolderIcon} defaultOpen={false}>
           <FileItem name=".bin" icon={FolderIcon} />
         </Folder>
       </div>
