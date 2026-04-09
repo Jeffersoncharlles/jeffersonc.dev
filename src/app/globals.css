@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --color-dracula-purple: var(--dracula-purple);
+  --color-dracula-pink: var(--dracula-pink);
+  --color-dracula-cyan: var(--dracula-cyan);
+  --color-dracula-green: var(--dracula-green);
+  --color-dracula-yellow: var(--dracula-yellow);
+  --color-dracula-orange: var(--dracula-orange);
+  --color-dracula-red: var(--dracula-red);
+
+  --color-device-bg: var(--device-bg);
+  --color-device-camera: var(--device-camera);
+  --color-device-button: var(--device-button);
+  --color-device-button-border: var(--device-button-border);
+  --color-device-frame-outer: var(--device-frame-outer);
+  --color-device-frame-inner: var(--device-frame-inner);
+
+  --color-blog-bg: var(--blog-bg);
+  --color-blog-mobile-bg: var(--blog-mobile-bg);
+  --color-blog-footer-bg: var(--blog-footer-bg);
+  --color-blog-card-bg: var(--blog-card-bg);
+
+  --font-inter: var(--font-inter);
+  --font-space-grotesk: var(--font-space-grotesk);
+  --font-mono: var(--font-liberation-mono);
+}
+
+@layer base {
+  :root {
+    /* Dracula / Tokio Night Mix based on Figma */
+    --background: #282a36;
+    --background-end: #24283b;
+    --foreground: #f8f8f2;
+
+    /* Device Mockup Colors */
+    --device-bg: #0e0e0e;
+    --device-camera: #1a1a1a;
+    --device-button: #2a2a2a;
+    --device-button-border: #131313;
+    --device-frame-outer: #353535;
+    --device-frame-inner: #1b1b1b;
+
+    /* Blog Colors */
+    --blog-bg: #1d1f27;
+    --blog-mobile-bg: #282a36;
+    --blog-footer-bg: #14151d;
+    --blog-card-bg: #242631;
+
+    --card: rgba(40, 42, 54, 0.6);
+    --card-foreground: #f8f8f2;
+
+    --popover: rgba(33, 34, 44, 0.75);
+    --popover-foreground: #f8f8f2;
+
+    --primary: #bd93f9;
+    --primary-foreground: #282a36;
+
+    --secondary: rgba(189, 147, 249, 0.1);
+    --secondary-foreground: #bd93f9;
+
+    --muted: rgba(255, 255, 255, 0.05);
+    --muted-foreground: rgba(248, 248, 242, 0.6);
+
+    --accent: rgba(255, 255, 255, 0.1);
+    --accent-foreground: #f8f8f2;
+
+    --destructive: #ff5555;
+    --destructive-foreground: #f8f8f2;
+
+    --border: rgba(189, 147, 249, 0.1);
+    --input: rgba(255, 255, 255, 0.1);
+    --ring: #bd93f9;
+
+    --radius: 1rem;
+
+    /* Syntax/Icon Colors */
+    --dracula-purple: #bd93f9;
+    --dracula-pink: #ff79c6;
+    --dracula-cyan: #8be9fd;
+    --dracula-green: #50fa7b;
+    --dracula-yellow: #f1fa8c;
+    --dracula-orange: #ffb86c;
+    --dracula-red: #ff5555;
+
+    /* Typography */
+    --font-inter: "Inter", sans-serif;
+    --font-space-grotesk: "Space Grotesk", sans-serif;
+    --font-liberation-mono: "Liberation Mono", monospace;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
