@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
 @theme {
+  --background-image-vscode-gradient: linear-gradient(
+    135deg, 
+    rgb(26, 27, 38) 0%, 
+    rgb(36, 40, 59) 100%
+  );
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 

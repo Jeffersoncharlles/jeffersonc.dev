@@ -1,84 +1,36 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image'
+import React from 'react'
+import Breadcrumbs from '@/components/breadcrumbs'
+import TabsBar from '@/components/tabs-bar'
 
-const imgContainer =
-  "https://www.figma.com/api/mcp/asset/8595fd1a-b6a5-4138-9125-c4a2f8f7cb43";
 const imgMargin =
-  "https://www.figma.com/api/mcp/asset/795e5aa1-6219-4c4b-a5ca-31f4a9fe7ec0";
-const imgContainer1 =
-  "https://www.figma.com/api/mcp/asset/085f0862-139d-4f60-936a-f271487b4a93";
+  'https://www.figma.com/api/mcp/asset/795e5aa1-6219-4c4b-a5ca-31f4a9fe7ec0'
+
 const imgMargin1 =
-  "https://www.figma.com/api/mcp/asset/53c4e721-f750-4502-8799-da0618fdea56";
+  'https://www.figma.com/api/mcp/asset/53c4e721-f750-4502-8799-da0618fdea56'
 const imgMargin2 =
-  "https://www.figma.com/api/mcp/asset/83b0b55b-8a1c-4172-ab1a-2b8d2475bf65";
+  'https://www.figma.com/api/mcp/asset/83b0b55b-8a1c-4172-ab1a-2b8d2475bf65'
 const imgIcon =
-  "https://www.figma.com/api/mcp/asset/5ac91657-197a-4539-aed1-a604f6bca245";
+  'https://www.figma.com/api/mcp/asset/5ac91657-197a-4539-aed1-a604f6bca245'
 const imgIcon1 =
-  "https://www.figma.com/api/mcp/asset/565ae144-b19e-498d-ab4a-58b0538bca6b";
+  'https://www.figma.com/api/mcp/asset/565ae144-b19e-498d-ab4a-58b0538bca6b'
 const imgIcon2 =
-  "https://www.figma.com/api/mcp/asset/82ea566b-7d11-4b9b-b491-6d2e3edfb5eb";
+  'https://www.figma.com/api/mcp/asset/82ea566b-7d11-4b9b-b491-6d2e3edfb5eb'
 const imgIcon3 =
-  "https://www.figma.com/api/mcp/asset/e1af6d90-dd16-4e40-be46-30647319a5c7";
+  'https://www.figma.com/api/mcp/asset/e1af6d90-dd16-4e40-be46-30647319a5c7'
 const imgIcon4 =
-  "https://www.figma.com/api/mcp/asset/a934590f-f610-4c77-8407-51abc54c9cef";
+  'https://www.figma.com/api/mcp/asset/a934590f-f610-4c77-8407-51abc54c9cef'
 const imgIcon5 =
-  "https://www.figma.com/api/mcp/asset/1b01adaf-c228-43ea-90b8-b692cfee5d57";
+  'https://www.figma.com/api/mcp/asset/1b01adaf-c228-43ea-90b8-b692cfee5d57'
 
 export default function VSCodeMainEditorArea() {
   return (
     <div className="relative size-full overflow-hidden flex flex-col bg-background">
       {/* Tabs Bar */}
-      <div className="bg-[rgba(0,0,0,0.2)] border-[rgba(255,255,255,0.05)] border-b border-solid flex h-[40px] items-center shrink-0 w-full overflow-x-auto hide-scrollbar">
-        <div className="bg-[rgba(189,147,249,0.15)] border-[#bd93f9] border-b-2 border-solid h-full flex items-center cursor-pointer hover:bg-white/5 transition-colors">
-          <div className="flex gap-[8px] h-full items-center px-[20px] relative">
-            <div className="h-[12px] w-[12px] relative shrink-0 flex items-center justify-center">
-              <img
-                alt=""
-                className="w-full h-full object-contain"
-                src={imgContainer}
-              />
-            </div>
-            <div className="flex items-center">
-              <p className="font-['Inter:Medium',sans-serif] font-medium text-[#f8f8f2] text-[11px]">
-                README.md
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="h-full flex items-center cursor-pointer hover:bg-white/5 transition-colors">
-          <div className="flex gap-[8px] h-full items-center px-[20px] relative opacity-60 hover:opacity-100 transition-opacity">
-            <div className="h-[12px] w-[12px] relative shrink-0 flex items-center justify-center">
-              <img
-                alt=""
-                className="w-full h-full object-contain"
-                src={imgContainer1}
-              />
-            </div>
-            <div className="flex items-center">
-              <p className="font-['Inter:Regular',sans-serif] font-normal text-[11px] text-[#f8f8f2]">
-                layout.tsx
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
 
+      <TabsBar />
       {/* Breadcrumbs */}
-      <div className="flex h-[28px] items-center px-[24px] shrink-0 w-full bg-[rgba(0,0,0,0.1)] border-b border-white/5">
-        <div className="flex items-center opacity-60 hover:opacity-100 cursor-pointer transition-opacity">
-          <p className="font-['Inter:Medium',sans-serif] font-medium text-[11px] text-[#f8f8f2]">
-            src
-          </p>
-        </div>
-        <div className="flex items-center justify-center px-[8px]">
-          <span className="text-[#f8f8f2] opacity-30 text-[10px]">/</span>
-        </div>
-        <div className="flex items-center">
-          <p className="font-['Inter:Medium',sans-serif] font-medium text-[11px] text-dracula-purple">
-            Clean Architecture Documentation
-          </p>
-        </div>
-      </div>
+      <Breadcrumbs />
 
       {/* Content Area */}
       <div className="flex-1 overflow-y-auto p-4 md:p-10 relative">
@@ -342,5 +294,5 @@ export default function VSCodeMainEditorArea() {
         </div>
       </div>
     </div>
-  );
+  )
 }

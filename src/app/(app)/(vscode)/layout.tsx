@@ -1,25 +1,25 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { Header } from "@/app/_components/header";
-import { Aside } from "@/components/Aside";
-import { IpadMockup } from "@/components/IpadMockup";
-import { IphoneMockup } from "@/components/IphoneMockup";
+import { useState } from 'react'
+import { Header } from '@/app/_components/header'
+import { Aside } from '@/components/Aside'
+import { IpadMockup } from '@/components/IpadMockup'
+import { IphoneMockup } from '@/components/IphoneMockup'
 
 export default function VSCodeLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-  const [isMobileAsideOpen, setIsMobileAsideOpen] = useState(false);
+  const [isMobileAsideOpen, setIsMobileAsideOpen] = useState(false)
 
   const toggleMobileAside = () => {
-    setIsMobileAsideOpen((prev) => !prev);
-  };
+    setIsMobileAsideOpen((prev) => !prev)
+  }
 
   const closeMobileAside = () => {
-    setIsMobileAsideOpen(false);
-  };
+    setIsMobileAsideOpen(false)
+  }
 
   const uiContent = (
     <>
@@ -41,14 +41,14 @@ export default function VSCodeLayout({
         </main>
       </div>
     </>
-  );
+  )
 
   return (
     <div
-      className="flex-1 flex flex-col items-center justify-center p-2 sm:p-3 md:p-6 lg:p-12 relative overflow-hidden"
+      className=" flex-1 flex flex-col items-center justify-center p-2 sm:p-3 md:p-6 lg:p-12 relative overflow-hidden"
       style={{
         backgroundImage:
-          "linear-gradient(135deg, rgb(26, 27, 38) 0%, rgb(36, 40, 59) 100%)",
+          'linear-gradient(135deg, rgb(26, 27, 38) 0%, rgb(36, 40, 59) 100%)',
       }}
     >
       <div
@@ -74,5 +74,5 @@ export default function VSCodeLayout({
         <IphoneMockup>{uiContent}</IphoneMockup>
       </div>
     </div>
-  );
+  )
 }
