@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "postinstall": "pnpm payload:fix",
-    "payload:fix": "pnpm payload manage:next-files && pnpm payload generate:importmap && pnpm payload generate:types",
+    "payload:fix": "pnpm payload generate:importmap && pnpm payload generate:types",
     "build": "next build",
     "start": "next start",
     "lint": "biome check",

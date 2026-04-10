@@ -62,12 +62,105 @@
   --font-inter: var(--font-inter);
   --font-space-grotesk: var(--font-space-grotesk);
   --font-mono: var(--font-liberation-mono);
+
+  --shadow-vscode-card: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+@layer components {
+  .vscode-layout-background {
+    background-image: var(--background-image-vscode-gradient);
+  }
+
+  .vscode-layout-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    isolation: isolate;
+  }
+
+  .vscode-layout-glow::before,
+  .vscode-layout-glow::after {
+    content: '';
+    position: absolute;
+    width: clamp(760px, 82vw, 1240px);
+    height: clamp(760px, 82vw, 1240px);
+    border-radius: 9999px;
+    opacity: 0.76;
+    mix-blend-mode: screen;
+    filter: blur(92px);
+  }
+
+  .vscode-layout-glow::before {
+    left: -20%;
+    top: -18%;
+    background: radial-gradient(
+      circle 600px at 50% 50%,
+      rgb(var(--dracula-purple-rgb) / 0.34) 0%,
+      rgb(var(--dracula-purple-rgb) / 0.22) 26%,
+      rgb(var(--dracula-purple-rgb) / 0.12) 48%,
+      rgb(var(--dracula-purple-rgb) / 0.06) 66%,
+      rgb(var(--dracula-purple-rgb) / 0) 88%
+    );
+  }
+
+  .vscode-layout-glow::after {
+    right: -22%;
+    bottom: -16%;
+    background: radial-gradient(
+      circle 600px at 50% 50%,
+      rgb(var(--dracula-pink-rgb) / 0.34) 0%,
+      rgb(var(--dracula-pink-rgb) / 0.22) 26%,
+      rgb(var(--dracula-pink-rgb) / 0.12) 30%,
+      rgb(var(--dracula-pink-rgb) / 0.06) 60%,
+      rgb(var(--dracula-pink-rgb) / 0) 88%
+    );
+  }
+
+  @media (max-width: 639px) {
+    .vscode-layout-glow::before,
+    .vscode-layout-glow::after {
+      opacity: 0.56;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .vscode-layout-glow::before {
+      left: 50%;
+      top: 50%;
+      transform: translate(-80%, -68%);
+    }
+
+    .vscode-layout-glow::after {
+      left: 50%;
+      top: 50%;
+      right: auto;
+      bottom: auto;
+      transform: translate(-20%, -30%);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .vscode-layout-glow::before {
+      left: 50%;
+      top: 50%;
+      transform: translate(-86%, -74%);
+    }
+
+    .vscode-layout-glow::after {
+      left: 50%;
+      top: 50%;
+      right: auto;
+      bottom: auto;
+      transform: translate(-14%, -22%);
+    }
+  }
 }
 
 @layer base {
   :root {
     /* Dracula / Tokio Night Mix based on Figma */
     --background: #282a36;
+    --shadow-dark: rgba(0, 0, 0, 0.37);
     --background-end: #24283b;
     --foreground: #f8f8f2;
 
@@ -114,7 +207,9 @@
 
     /* Syntax/Icon Colors */
     --dracula-purple: #bd93f9;
+    --dracula-purple-rgb: 189 147 249;
     --dracula-pink: #ff79c6;
+    --dracula-pink-rgb: 255 121 198;
     --dracula-cyan: #8be9fd;
     --dracula-green: #50fa7b;
     --dracula-yellow: #f1fa8c;

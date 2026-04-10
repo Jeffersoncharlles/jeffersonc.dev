@@ -68,11 +68,12 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
-    education: Education;
+    'home-cards': HomeCard;
+    projects: Project;
     infrastructure: Infrastructure;
-    media: Media;
-    tests: Test;
+    education: Education;
     blog: Blog;
+    media: Media;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -81,11 +82,12 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
-    education: EducationSelect<false> | EducationSelect<true>;
+    'home-cards': HomeCardsSelect<false> | HomeCardsSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
     infrastructure: InfrastructureSelect<false> | InfrastructureSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
-    tests: TestsSelect<false> | TestsSelect<true>;
+    education: EducationSelect<false> | EducationSelect<true>;
     blog: BlogSelect<false> | BlogSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -96,10 +98,10 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
-    'app-config': AppConfig;
+    'system-status': SystemStatus;
   };
   globalsSelect: {
-    'app-config': AppConfigSelect<false> | AppConfigSelect<true>;
+    'system-status': SystemStatusSelect<false> | SystemStatusSelect<true>;
   };
   locale: null;
   widgets: {
@@ -158,6 +160,78 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-cards".
+ */
+export interface HomeCard {
+  id: string;
+  title: string;
+  /**
+   * Ex: "Frontend", "Backend", "Mobile"
+   */
+  badgeLabel?: string | null;
+  description: string;
+  /**
+   * Use o nome do ícone do Lucide ou da sua biblioteca (ex: "code", "terminal", "database")
+   */
+  iconName: string;
+  colorsCards?: ('blue' | 'purple' | 'green' | 'orange') | null;
+  footerTags?:
+    | {
+        tag?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: string;
+  title: string;
+  type: 'projects' | 'demos';
+  githubUrl?: string | null;
+  liveUrl?: string | null;
+  technologies?: (string | Infrastructure)[] | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "infrastructure".
+ */
+export interface Infrastructure {
+  id: string;
+  name: string;
+  category: 'stack' | 'setup' | 'integrations';
+  /**
+   * Nome do ícone Lucide
+   */
+  iconName?: string | null;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "education".
  */
 export interface Education {
@@ -173,14 +247,33 @@ export interface Education {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "infrastructure".
+ * via the `definition` "blog".
  */
-export interface Infrastructure {
+export interface Blog {
   id: string;
-  name: string;
-  category: 'stack' | 'setup' | 'integrations';
-  icon?: (string | null) | Media;
-  description?: string | null;
+  title: string;
+  slug: string;
+  author: {
+    name: string;
+    avatar?: (string | null) | Media;
+  };
+  category?: ('frontend' | 'backend' | 'career')[] | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  publishedAt: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -202,54 +295,6 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "tests".
- */
-export interface Test {
-  id: string;
-  title: string;
-  type: 'projects' | 'demos';
-  description: string;
-  githubUrl?: string | null;
-  liveUrl?: string | null;
-  techStack?: (string | Infrastructure)[] | null;
-  coverImage?: (string | null) | Media;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blog".
- */
-export interface Blog {
-  id: string;
-  title: string;
-  /**
-   * URL amigável gerada automaticamente
-   */
-  slug?: string | null;
-  category?: ('tech' | 'career' | 'news') | null;
-  featuredImage?: (string | null) | Media;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  publishedAt?: string | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -280,24 +325,28 @@ export interface PayloadLockedDocument {
         value: string | User;
       } | null)
     | ({
-        relationTo: 'education';
-        value: string | Education;
+        relationTo: 'home-cards';
+        value: string | HomeCard;
+      } | null)
+    | ({
+        relationTo: 'projects';
+        value: string | Project;
       } | null)
     | ({
         relationTo: 'infrastructure';
         value: string | Infrastructure;
       } | null)
     | ({
-        relationTo: 'media';
-        value: string | Media;
-      } | null)
-    | ({
-        relationTo: 'tests';
-        value: string | Test;
+        relationTo: 'education';
+        value: string | Education;
       } | null)
     | ({
         relationTo: 'blog';
         value: string | Blog;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: string | Media;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -367,6 +416,52 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-cards_select".
+ */
+export interface HomeCardsSelect<T extends boolean = true> {
+  title?: T;
+  badgeLabel?: T;
+  description?: T;
+  iconName?: T;
+  colorsCards?: T;
+  footerTags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  title?: T;
+  type?: T;
+  githubUrl?: T;
+  liveUrl?: T;
+  technologies?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "infrastructure_select".
+ */
+export interface InfrastructureSelect<T extends boolean = true> {
+  name?: T;
+  category?: T;
+  iconName?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "education_select".
  */
 export interface EducationSelect<T extends boolean = true> {
@@ -381,13 +476,20 @@ export interface EducationSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "infrastructure_select".
+ * via the `definition` "blog_select".
  */
-export interface InfrastructureSelect<T extends boolean = true> {
-  name?: T;
+export interface BlogSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  author?:
+    | T
+    | {
+        name?: T;
+        avatar?: T;
+      };
   category?: T;
-  icon?: T;
-  description?: T;
+  content?: T;
+  publishedAt?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -408,35 +510,6 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "tests_select".
- */
-export interface TestsSelect<T extends boolean = true> {
-  title?: T;
-  type?: T;
-  description?: T;
-  githubUrl?: T;
-  liveUrl?: T;
-  techStack?: T;
-  coverImage?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blog_select".
- */
-export interface BlogSelect<T extends boolean = true> {
-  title?: T;
-  slug?: T;
-  category?: T;
-  featuredImage?: T;
-  content?: T;
-  publishedAt?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -480,48 +553,26 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "app-config".
+ * via the `definition` "system-status".
  */
-export interface AppConfig {
+export interface SystemStatus {
   id: string;
-  status: {
-    logMessage: string;
-    currentFocus?: string | null;
-    isAvailable?: boolean | null;
-  };
-  links?:
-    | {
-        label: string;
-        url: string;
-        category?: ('links' | 'social') | null;
-        iconName?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  logMessage: string;
+  currentFocus?: string | null;
+  isAvailable?: boolean | null;
+  lastPing?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "app-config_select".
+ * via the `definition` "system-status_select".
  */
-export interface AppConfigSelect<T extends boolean = true> {
-  status?:
-    | T
-    | {
-        logMessage?: T;
-        currentFocus?: T;
-        isAvailable?: T;
-      };
-  links?:
-    | T
-    | {
-        label?: T;
-        url?: T;
-        category?: T;
-        iconName?: T;
-        id?: T;
-      };
+export interface SystemStatusSelect<T extends boolean = true> {
+  logMessage?: T;
+  currentFocus?: T;
+  isAvailable?: T;
+  lastPing?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

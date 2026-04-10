@@ -1,7 +1,10 @@
-import Image from 'next/image'
-import React from 'react'
+import { AppWindow } from 'lucide-react'
+import { Suspense } from 'react'
 import Breadcrumbs from '@/components/breadcrumbs'
+import { CardList } from '@/components/card-list'
 import TabsBar from '@/components/tabs-bar'
+import { Badge } from '@/components/UI/badge'
+import { Card } from '@/components/UI/card'
 
 const imgMargin =
   'https://www.figma.com/api/mcp/asset/795e5aa1-6219-4c4b-a5ca-31f4a9fe7ec0'
@@ -39,23 +42,26 @@ export default function VSCodeMainEditorArea() {
           <div className="flex flex-col gap-[12px] w-full">
             <div className="w-full">
               <h1 className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-[28px] md:text-[36px] text-white tracking-[-0.9px]">
-                Project Architecture Guide
+                Jefferson Charlles
               </h1>
+
+              <h5>Engenheiro de Software Full Stack</h5>
             </div>
             <div className="w-full">
               <p className="font-['Liberation_Mono:Regular',sans-serif] text-[13px] md:text-[14px] text-dracula-purple opacity-80">
-                Next.js 16 + Clean Architecture implementation standards.
+                Construindo ecossistemas de alta performance com mentalidade de
+                Engenharia de Software.
               </p>
             </div>
             <div className="flex flex-wrap gap-[12px] pt-[12px] w-full">
               <div className="bg-[rgba(189,147,249,0.2)] border border-[rgba(189,147,249,0.3)] flex items-center px-[13px] py-[5px] rounded-[12px]">
                 <span className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-dracula-purple text-[10px] tracking-[1px] uppercase">
-                  v2.0.0-beta
+                  PÓS-GRADUADO (2026)
                 </span>
               </div>
               <div className="bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] flex items-center px-[13px] py-[5px] rounded-[12px]">
                 <span className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-[10px] text-[rgba(255,255,255,0.6)] tracking-[1px] uppercase">
-                  Architecture Design
+                  ESPECIALISTA JS/TS
                 </span>
               </div>
             </div>
@@ -64,44 +70,41 @@ export default function VSCodeMainEditorArea() {
           {/* Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[32px] pb-[80px] w-full">
             {/* Card 1 */}
-            <div className="border border-[rgba(255,255,255,0.1)] flex flex-col gap-[14.8px] p-[24px] md:p-[29px] relative rounded-[24px] overflow-hidden group hover:border-[rgba(139,233,253,0.3)] transition-colors cursor-pointer">
-              <div className="absolute backdrop-blur-[6px] bg-[rgba(68,71,90,0.3)] inset-0 pointer-events-none group-hover:bg-[rgba(68,71,90,0.5)] transition-colors" />
-              <div className="relative w-full flex items-start justify-between z-10">
-                <div className="bg-[rgba(139,233,253,0.1)] border border-[rgba(139,233,253,0.2)] flex px-[13px] py-[7px] rounded-[12px]">
-                  <span className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-dracula-cyan text-[10px] tracking-[1px] uppercase">
-                    UI Layer
-                  </span>
-                </div>
-                <div className="w-[15px] h-[12px] relative flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity">
-                  <img
-                    alt=""
-                    className="w-full h-full object-contain"
-                    src={imgIcon}
-                  />
-                </div>
-              </div>
-              <div className="relative w-full pt-[5.2px] z-10">
+            <Suspense fallback={<div>Loading...</div>}>
+              <CardList />
+            </Suspense>
+            {/* <Card.Root>
+              <Card.Overlay />
+              <Card.Header>
+                <Badge.Root>
+                  <Badge.Content>UI Layer</Badge.Content>
+                </Badge.Root>
+
+                <AppWindow className="size-4 opacity-70 group-hover:opacity-100 transition-opacity text-cyan-300" />
+              </Card.Header>
+              <Card.Title>
                 <h3 className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-[20px] text-white">
-                  Presentational Layer
+                  Interfaces de altíssima performance, responsivas e acessíveis
+                  (Lighthouse 90).
                 </h3>
-              </div>
-              <div className="relative w-full z-10">
+              </Card.Title>
+              <Card.Content>
                 <p className="font-['Inter:Medium',sans-serif] font-medium text-[13px] md:text-[14px] text-[rgba(248,248,242,0.8)] leading-[1.6]">
                   Responsável pelas rotas, layouts e Server Actions. Atua como o
                   ponto de entrada da interface para o usuário.
                 </p>
-              </div>
-              <div className="opacity-70 relative w-full pt-[9.2px] flex flex-wrap gap-[12px] z-10 group-hover:opacity-100 transition-opacity">
+              </Card.Content>
+              <Card.Footer>
                 <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-cyan text-[11px] bg-dracula-cyan/10 px-2 py-1 rounded">
-                  /src/app
+                  /react /nextjs-15
                 </span>
                 <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-cyan text-[11px] bg-dracula-cyan/10 px-2 py-1 rounded">
-                  /src/components
+                  /tailwind-v4 /framer-motion
                 </span>
-              </div>
-            </div>
+              </Card.Footer>
+            </Card.Root> */}
+            {/*
 
-            {/* Card 2 */}
             <div className="border border-[rgba(255,255,255,0.1)] flex flex-col gap-[14.8px] p-[24px] md:p-[29px] relative rounded-[24px] overflow-hidden group hover:border-[rgba(189,147,249,0.3)] transition-colors cursor-pointer">
               <div className="absolute backdrop-blur-[6px] bg-[rgba(68,71,90,0.3)] inset-0 pointer-events-none group-hover:bg-[rgba(68,71,90,0.5)] transition-colors" />
               <div className="relative w-full flex items-start justify-between z-10">
@@ -139,7 +142,7 @@ export default function VSCodeMainEditorArea() {
               </div>
             </div>
 
-            {/* Card 3 */}
+
             <div className="border border-[rgba(255,255,255,0.1)] flex flex-col gap-[14.8px] p-[24px] md:p-[29px] relative rounded-[24px] overflow-hidden group hover:border-[rgba(255,121,198,0.3)] transition-colors cursor-pointer">
               <div className="absolute backdrop-blur-[6px] bg-[rgba(68,71,90,0.3)] inset-0 pointer-events-none group-hover:bg-[rgba(68,71,90,0.5)] transition-colors" />
               <div className="relative w-full flex items-start justify-between z-10">
@@ -177,7 +180,7 @@ export default function VSCodeMainEditorArea() {
               </div>
             </div>
 
-            {/* Card 4 */}
+
             <div className="border border-[rgba(255,255,255,0.1)] flex flex-col gap-[14.8px] p-[24px] md:p-[29px] relative rounded-[24px] overflow-hidden group hover:border-[rgba(80,250,123,0.3)] transition-colors cursor-pointer">
               <div className="absolute backdrop-blur-[6px] bg-[rgba(68,71,90,0.3)] inset-0 pointer-events-none group-hover:bg-[rgba(68,71,90,0.5)] transition-colors" />
               <div className="relative w-full flex items-start justify-between z-10">
@@ -215,7 +218,7 @@ export default function VSCodeMainEditorArea() {
               </div>
             </div>
 
-            {/* Card 5 */}
+
             <div className="border border-[rgba(255,255,255,0.1)] flex flex-col gap-[14.8px] p-[24px] md:p-[29px] relative rounded-[24px] overflow-hidden group hover:border-[rgba(241,250,140,0.3)] transition-colors cursor-pointer">
               <div className="absolute backdrop-blur-[6px] bg-[rgba(68,71,90,0.3)] inset-0 pointer-events-none group-hover:bg-[rgba(68,71,90,0.5)] transition-colors" />
               <div className="relative w-full flex items-start justify-between z-10">
@@ -253,7 +256,7 @@ export default function VSCodeMainEditorArea() {
               </div>
             </div>
 
-            {/* Card 6 */}
+
             <div className="border border-[rgba(255,255,255,0.1)] flex flex-col gap-[14.8px] p-[24px] md:p-[29px] relative rounded-[24px] overflow-hidden group hover:border-[rgba(255,184,108,0.3)] transition-colors cursor-pointer">
               <div className="absolute backdrop-blur-[6px] bg-[rgba(68,71,90,0.3)] inset-0 pointer-events-none group-hover:bg-[rgba(68,71,90,0.5)] transition-colors" />
               <div className="relative w-full flex items-start justify-between z-10">
@@ -289,7 +292,7 @@ export default function VSCodeMainEditorArea() {
                   /playwright.config.ts
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
