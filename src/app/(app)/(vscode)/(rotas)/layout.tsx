@@ -7,17 +7,18 @@ export default function ReadmeLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="relative size-full overflow-hidden flex flex-col bg-background">
+    <section className="relative min-h-234.5 flex flex-col bg-background">
       <TabsBar />
-      {/* Breadcrumbs */}
       <Breadcrumbs />
 
       {/* header */}
 
       {/* content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 pb-20 w-full">
-        {children}
+      <div className="w-full flex-1 min-h-0 overflow-y-auto border">
+        <div className="w-full max-w-4xl mx-auto flex min-h-full flex-col gap-6 md:gap-8 pb-20 px-4 md:px-8">
+          {children}
+        </div>
       </div>
-    </div>
+    </section>
   )
 }

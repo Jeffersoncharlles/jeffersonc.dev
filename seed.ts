@@ -177,24 +177,35 @@ const seedHomeCards = [
 const seedEducation = [
   {
     name: 'Engenharia de Software',
-    institution: 'Universidade de Exemplo',
-    type: 'graduacao',
-    degreeType: 'bacharelado',
-    startDate: new Date('2018-02-01').toISOString(),
-    endDate: new Date('2022-12-15').toISOString(),
-    description:
-      'Fundamentos sólidos em arquitetura, algoritmos, design de software e engenharia de produto.',
-    avatar: 'file.svg',
+    institution: 'Anhanguera Educacional',
+    type: 'pos_graduacao',
+    startDate: new Date('2025-06-01').toISOString(),
+    endDate: new Date('2026-04-10').toISOString(),
+    description: `specialização focada no ciclo de vida crítico de sistemas de alta complexidade. Formação concluída com excelência técnica (Média 9,4), unindo visão arquitetural estratégica e execução ágil.
+
+Eixos de Especialização:
+
+Arquitetura de Software: Decisões de design de alto nível, análise e modelagem de estruturas escaláveis, garantindo atributos de qualidade (disponibilidade e manutenibilidade).
+
+Engenharia de Requisitos: Tradução de necessidades de negócio em especificações técnicas robustas através de análise orientada a objetos.
+
+Padrões e Dados: Implementação de Design Patterns e arquitetura de dados otimizada para performance.
+
+Gestão Ágil de Sistemas: Governança e entrega incremental com foco em adaptabilidade e valor de negócio.
+
+Qualidade e Segurança: Validação rigorosa via testes estruturados e implementação de camadas de segurança no ciclo de desenvolvimento.`,
+    avatar: 'anhaguera-avatar.png',
   },
   {
-    name: 'Pós-graduação em Engenharia e Qualidade de Software',
-    institution: 'Instituto de Tecnologia Aplicada',
-    type: 'pos_graduacao',
-    startDate: new Date('2023-03-01').toISOString(),
-    endDate: new Date('2024-11-30').toISOString(),
-    description:
-      'Aprofundamento em testes automatizados, CI/CD, observabilidade e governança técnica.',
+    name: 'Análise e Desenvolvimento de Sistemas',
+    institution: 'Faculdade Católica Paulista',
+    type: 'graduacao',
+    degreeType: 'tecnologo',
+    startDate: new Date('2021-01-10').toISOString(),
+    endDate: new Date('2023-08-01').toISOString(),
+    description: `Desenvolvimento colaborativo de projetos de software, com destaque para a criação da extensão FocoTotal (focada em produtividade) em parceria com colegas de turma. Participação ativa em fóruns de discussão sobre Engenharia de Software e Banco de Dados. Integralização de 68 horas de atividades complementares voltadas ao aperfeiçoamento técnico e profissional`,
     certificateUrl: 'https://example.com/pos-graduacao-certificado',
+    avatar: 'uca-avatar.png',
   },
   {
     name: 'UI/UX Design Professional',
