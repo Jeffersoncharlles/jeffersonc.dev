@@ -12,8 +12,10 @@ export default function Error({
 }) {
   return (
     <div className="flex flex-col items-center justify-center p-10 border border-red-500/20 bg-red-500/5 rounded-lg">
-      {/** biome-ignore lint/suspicious/noCommentText: <explanation> */}
-      <h2 className="text-red-400 font-mono"> // 500: Internal Server Error</h2>
+      <h2 className="text-red-400 font-mono">
+        {' '}
+        {'//'} 500: Internal Server Error
+      </h2>
       <p className="text-sm text-gray-400 my-2">{error.message}</p>
       <Button
         onClick={() => reset()}

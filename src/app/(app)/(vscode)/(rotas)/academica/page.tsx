@@ -1,40 +1,5 @@
-import { Badge } from '@/components/UI/badge'
-import { Card } from '@/components/UI/card'
-
-const timelineItems = [
-  {
-    period: '2023 — 2024',
-    title: 'Pós-Graduação em Engenharia & Qualidade de Software',
-    description:
-      'Foco avançado em metodologias ágeis, testes automatizados, CI/CD e governança de TI. Especialização voltada para a entrega de produtos digitais robustos e escaláveis com foco em experiência do usuário.',
-    tags: ['Selenium', 'Jenkins', 'QA Metrics'],
-    color: 'purple',
-  },
-  {
-    period: '2018 — 2022',
-    title: 'Bacharelado em Engenharia de Software',
-    description:
-      'Fundação sólida em algoritmos, arquitetura de sistemas e gestão de projetos. Participação em projetos de pesquisa focados em inteligência artificial aplicada ao desenvolvimento web.',
-    tags: ['Algoritmos', 'Full Stack', 'Project Management'],
-    color: 'blue',
-  },
-  {
-    period: '2021',
-    title: 'Certificação UI/UX Design Professional',
-    description:
-      'Estudo profundo sobre psicologia do usuário, prototipação de alta fidelidade e design systems. Foco em criar interfaces visualmente impactantes que respeitam as normas de acessibilidade.',
-    tags: ['Figma', 'Design Thinking', 'Accessibility'],
-    color: 'pink',
-  },
-  {
-    period: '2019',
-    title: 'Técnico em Desenvolvimento de Sistemas',
-    description:
-      'Introdução ao mundo da programação com foco em lógica e desenvolvimento orientado a objetos. Primeiros passos em Java e SQL.',
-    tags: ['Java', 'MySQL', 'OOP'],
-    color: 'orange',
-  },
-]
+import { Suspense } from 'react'
+import { AcademicList } from './_components/academic-list'
 
 const ApplicationPage = () => {
   return (
@@ -42,10 +7,14 @@ const ApplicationPage = () => {
       {/* Vertical Timeline Line */}
       <div className="absolute top-0 bottom-0 left-8 md:left-12 w-0.5 bg-dracula-purple/20" />
 
-      {timelineItems.map((item) => (
-        <div key={`${item.period}-${item.title}`} className="relative pl-12 md:pl-20">
+      <Suspense>
+        <AcademicList />
+      </Suspense>
+
+      {/* {academic.map((item) => (
+        <div key={item.id} className="relative pl-12 md:pl-20">
           {/* Timeline Dot */}
-          <div
+      {/* <div
             className="absolute left-6.5 md:left-10.5 top-6 w-3 h-3 rounded-full border-4 border-background z-20 shadow-[0_0_8px_rgba(0,0,0,0.5)]"
             style={{
               backgroundColor: `var(--dracula-${item.color === 'blue' ? 'cyan' : item.color})`,
@@ -88,9 +57,9 @@ const ApplicationPage = () => {
                 </Badge.Root>
               ))}
             </Card.Footer>
-          </Card.Root>
+          </Card.Root> 
         </div>
-      ))}
+      ))} */}
     </div>
   )
 }

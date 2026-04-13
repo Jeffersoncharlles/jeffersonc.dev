@@ -4,35 +4,15 @@ import { CardListSkeleton } from '@/app/(app)/(vscode)/_components/card-list-ske
 import Breadcrumbs from '@/components/breadcrumbs'
 import TabsBar from '@/components/tabs-bar'
 
-const imgMargin =
-  'https://www.figma.com/api/mcp/asset/795e5aa1-6219-4c4b-a5ca-31f4a9fe7ec0'
-
-const imgMargin1 =
-  'https://www.figma.com/api/mcp/asset/53c4e721-f750-4502-8799-da0618fdea56'
-const imgMargin2 =
-  'https://www.figma.com/api/mcp/asset/83b0b55b-8a1c-4172-ab1a-2b8d2475bf65'
-const imgIcon =
-  'https://www.figma.com/api/mcp/asset/5ac91657-197a-4539-aed1-a604f6bca245'
-const imgIcon1 =
-  'https://www.figma.com/api/mcp/asset/565ae144-b19e-498d-ab4a-58b0538bca6b'
-const imgIcon2 =
-  'https://www.figma.com/api/mcp/asset/82ea566b-7d11-4b9b-b491-6d2e3edfb5eb'
-const imgIcon3 =
-  'https://www.figma.com/api/mcp/asset/e1af6d90-dd16-4e40-be46-30647319a5c7'
-const imgIcon4 =
-  'https://www.figma.com/api/mcp/asset/a934590f-f610-4c77-8407-51abc54c9cef'
-const imgIcon5 =
-  'https://www.figma.com/api/mcp/asset/1b01adaf-c228-43ea-90b8-b692cfee5d57'
-
 export default function VSCodeMainEditorArea() {
   return (
-    <div className="relative size-full overflow-hidden flex flex-col bg-background ">
+    <div className="relative  overflow-hidden flex flex-col bg-background ">
       <TabsBar />
       <Breadcrumbs />
 
       {/* Content Area */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-10 relative ">
-        <div className="flex flex-col gap-9 md:gap-12 max-w-4xl w-full mx-auto">
+      <div className="flex-1 overflow-y-auto md:p-6 relative ">
+        <div className="flex flex-col gap-6 p-4 md:gap-8 max-w-5xl w-full mx-auto">
           {/* Header */}
           <div className="flex flex-col gap-4 w-full">
             <div className="w-full">
@@ -45,13 +25,13 @@ export default function VSCodeMainEditorArea() {
               </h5>
             </div>
             <div className="w-full">
-              <p className="font-['Liberation_Mono:Regular',sans-serif] text-[13px] md:text-[14px] text-dracula-purple opacity-80">
+              <p className="font-['Liberation_Mono:Regular',sans-serif] text-[13px] md:text-[14px] text-slate-300 opacity-80">
                 Construindo ecossistemas de alta performance com mentalidade de
                 Engenharia de Software.
               </p>
             </div>
             <div className="flex flex-wrap gap-2 pt-2 w-full">
-              <div className="bg-dracula-purple/15 border border-dracula-purple flex items-center px-[13px] py-[5px] rounded-[12px]">
+              <div className="bg-dracula-purple/15 border border-dracula-purple flex items-center px-3 py-1 rounded-xl">
                 <span className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-dracula-purple text-[10px] tracking-[1px] uppercase">
                   PÓS-GRADUADO (2026)
                 </span>
@@ -64,8 +44,24 @@ export default function VSCodeMainEditorArea() {
             </div>
           </div>
 
+          <p className="text-slate-400">
+            Minha jornada na tecnologia é definida pela resolução de problemas
+            complexos e pela visão Full-Cycle. Por quase uma década, atuei como
+            a principal referência técnica na RBS Transportes, onde não apenas
+            desenvolvi software, mas geri infraestruturas críticas, automatizei
+            fluxos de deploy e garanti a segurança sistêmica de operações de
+            missão crítica. Hoje, foco em elevar o padrão de desenvolvimento
+            utilizando o ecossistema moderno de React, Next.js e NestJS,
+            integrando mensageria com Kafka e arquiteturas de microsserviços.
+            Acredito na engenharia de software como um equilíbrio entre
+            performance impecável (Lighthouse {' > '} 90) e código sustentável
+            (Clean Architecture). Atualmente, exploro o potencial de Agentes de
+            IA para otimizar ciclos de entrega e criar soluções ainda mais
+            inteligentes e resilientes.
+          </p>
+
           {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 pb-10 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 pb-4 w-full">
             <Suspense fallback={<CardListSkeleton />}>
               <CardList />
             </Suspense>

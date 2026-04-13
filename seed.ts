@@ -113,40 +113,25 @@ const seedInfrastructure = [
 
 const seedHomeCards = [
   {
-    title: 'PILAR FRONT-END',
-    badgeLabel: 'UI LAYER',
+    title: 'INFRAESTRUTURA & RESILIÊNCIA',
+    badgeLabel: 'INFRASTRUCTURE',
     description:
-      'Interfaces de altissima performance, responsivas e acessiveis (Lighthouse > 90).',
-    iconName: 'monitor',
-    colorsCards: 'blue',
+      'Gestão técnica de infraestrutura crítica com 8 anos de experiência em administração de servidores Linux, Docker, proxy reverso com Nginx e automações estratégicas em Shell Script.',
+    iconName: 'database',
+    colorsCards: 'orange',
     footerTags: [
-      { tag: '/react' },
-      { tag: '/nextjs-15' },
-      { tag: '/tailwind-v4' },
-      { tag: '/framer-motion' },
+      { tag: '/docker' },
+      { tag: '/kafka' },
+      { tag: '/postgresql' },
+      { tag: '/mongodb' },
     ],
-    order: 1,
-  },
-  {
-    title: 'PILAR BACK-END',
-    badgeLabel: 'APPLICATION',
-    description:
-      'APIs RESTful escalaveis, governanca de dados e arquitetura de microsservicos.',
-    iconName: 'cog',
-    colorsCards: 'purple',
-    footerTags: [
-      { tag: '/nodejs' },
-      { tag: '/fastify' },
-      { tag: '/express' },
-      { tag: '/solid' },
-    ],
-    order: 2,
+    order: 4,
   },
   {
     title: 'ENGENHARIA & QUALIDADE',
     badgeLabel: 'CORE DOMAIN',
     description:
-      'Clean Architecture, Padroes de Projeto (Patterns) e cobertura de testes robusta.',
+      'Foco rigoroso em qualidade de código e manutenibilidade através de Clean Architecture, SOLID e Design Patterns, garantindo a integridade do software com cobertura de testes automatizados.',
     iconName: 'shield-check',
     colorsCards: 'green',
     footerTags: [
@@ -158,34 +143,67 @@ const seedHomeCards = [
     order: 3,
   },
   {
-    title: 'INFRAESTRUTURA & DATA',
-    badgeLabel: 'INFRASTRUCTURE',
+    title: 'SISTEMAS DISTRIBUÍDOS & APIs',
+    badgeLabel: 'APPLICATION',
     description:
-      'Gestao de infra critica (8 anos), mensageria distribuida e bancos SQL/NoSQL.',
-    iconName: 'database',
-    colorsCards: 'orange',
+      'Construção de APIs RESTful escaláveis e sistemas de missão crítica utilizando microsserviços e mensageria com Kafka para garantir processamento de dados em tempo real.',
+    iconName: 'cog',
+    colorsCards: 'purple',
     footerTags: [
-      { tag: '/docker' },
-      { tag: '/kafka' },
-      { tag: '/postgresql' },
-      { tag: '/mongodb' },
+      { tag: '/nodejs' },
+      { tag: '/fastify' },
+      { tag: '/express' },
+      { tag: '/solid' },
     ],
-    order: 4,
+    order: 2,
+  },
+  {
+    title: 'ARQUITETURA DE INTERFACES',
+    badgeLabel: 'UI LAYER',
+    description:
+      'Desenvolvimento de interfaces de altíssima performance (Lighthouse > 90) e responsivas, utilizando o ecossistema moderno de Next.js e Tailwind CSS v4 para entregar a melhor experiência de usuário.',
+    iconName: 'monitor',
+    colorsCards: 'blue',
+    footerTags: [
+      { tag: '/react' },
+      { tag: '/nextjs-15' },
+      { tag: '/tailwind-v4' },
+      { tag: '/framer-motion' },
+    ],
+    order: 1,
   },
 ]
 
 const seedEducation = [
   {
-    name: 'Analise e Desenvolvimento de Sistemas',
-    institution: 'Faculdade de Tecnologia',
-    type: 'domain',
-    description: 'Fundamentos de engenharia de software e arquitetura.',
+    name: 'Engenharia de Software',
+    institution: 'Universidade de Exemplo',
+    type: 'graduacao',
+    degreeType: 'bacharelado',
+    startDate: new Date('2018-02-01').toISOString(),
+    endDate: new Date('2022-12-15').toISOString(),
+    description:
+      'Fundamentos sólidos em arquitetura, algoritmos, design de software e engenharia de produto.',
+    avatar: 'file.svg',
   },
   {
-    name: 'Clean Architecture na Pratica',
+    name: 'Pós-graduação em Engenharia e Qualidade de Software',
+    institution: 'Instituto de Tecnologia Aplicada',
+    type: 'pos_graduacao',
+    startDate: new Date('2023-03-01').toISOString(),
+    endDate: new Date('2024-11-30').toISOString(),
+    description:
+      'Aprofundamento em testes automatizados, CI/CD, observabilidade e governança técnica.',
+    certificateUrl: 'https://example.com/pos-graduacao-certificado',
+  },
+  {
+    name: 'UI/UX Design Professional',
     institution: 'Plataforma Online',
-    type: 'application',
-    description: 'Aplicacao de boundaries, entidades e casos de uso.',
+    type: 'certificacao',
+    endDate: new Date('2021-09-10').toISOString(),
+    description:
+      'Estudo sobre prototipação, sistemas de design e acessibilidade.',
+    certificateUrl: 'https://example.com/ui-ux-certificado',
   },
 ]
 
@@ -224,6 +242,7 @@ export const script = async (config: SanitizedConfig) => {
   await clearCollection('infrastructure')
   await clearCollection('media')
 
+  const mediaByFilename = new Map<string, string>()
   const publicFiles = ['file.svg', 'globe.svg', 'window.svg']
   for (const fileName of publicFiles) {
     const filePath = path.resolve(__dirname, 'public', fileName)
@@ -232,11 +251,13 @@ export const script = async (config: SanitizedConfig) => {
       continue
     }
 
-    await payload.create({
+    const media = await payload.create({
       collection: 'media',
       data: { alt: `Asset ${fileName}` },
       filePath,
     })
+
+    mediaByFilename.set(fileName, media.id)
   }
 
   const infrastructureByName = new Map<string, string>()
@@ -256,7 +277,13 @@ export const script = async (config: SanitizedConfig) => {
   }
 
   for (const item of seedEducation) {
-    await upsertByField('education', 'name', item.name, item)
+    const avatarFileName = item.avatar
+    const educationData = {
+      ...item,
+      avatar: avatarFileName ? mediaByFilename.get(avatarFileName) : undefined,
+    }
+
+    await upsertByField('education', 'name', item.name, educationData)
   }
 
   const projects = [

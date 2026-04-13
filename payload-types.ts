@@ -238,25 +238,16 @@ export interface Education {
   id: string;
   name: string;
   institution: string;
-  type: 'domain' | 'application';
+  type: 'graduacao' | 'pos_graduacao' | 'certificacao';
+  degreeType?: ('bacharelado' | 'licenciatura' | 'tecnologo') | null;
+  startDate?: string | null;
+  endDate: string;
   description?: string | null;
   certificateUrl?: string | null;
-  completedAt?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blog".
- */
-export interface Blog {
-  id: string;
-  title: string;
-  slug?: string | null;
-  category: 'frontend' | 'backend' | 'career';
-  description?: string | null;
-  markdown: string;
-  publishedAt: string;
+  /**
+   * Opcional. Exibido como imagem de destaque da formação.
+   */
+  avatar?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -278,6 +269,21 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog".
+ */
+export interface Blog {
+  id: string;
+  title: string;
+  slug?: string | null;
+  category: 'frontend' | 'backend' | 'career';
+  description?: string | null;
+  markdown: string;
+  publishedAt: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -451,9 +457,12 @@ export interface EducationSelect<T extends boolean = true> {
   name?: T;
   institution?: T;
   type?: T;
+  degreeType?: T;
+  startDate?: T;
+  endDate?: T;
   description?: T;
   certificateUrl?: T;
-  completedAt?: T;
+  avatar?: T;
   updatedAt?: T;
   createdAt?: T;
 }

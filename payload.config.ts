@@ -11,6 +11,7 @@ import { Media } from '@/core/infra/cms/collections/Media'
 import { Projects } from '@/core/infra/cms/collections/Projects'
 import { SystemStatus } from '@/core/infra/cms/collections/status'
 import { Users } from '@/core/infra/cms/collections/Users'
+import env from '@/shared/env'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -19,18 +20,18 @@ export default buildConfig({
   bin: [
     {
       key: 'seed-db',
-      scriptPath: path.resolve(dirname, 'seed-home-cards.ts'),
+      scriptPath: path.resolve(dirname, 'seed.ts'),
     },
   ],
   admin: {
     user: Users.slug,
   },
   editor: lexicalEditor(),
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
-  secret: process.env.PAYLOAD_SECRET || 'uma-chave-temporaria-para-teste',
+  serverURL: env.NEXT_PUBLIC_SERVER_URL,
+  secret: env.PAYLOAD_SECRET,
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URL,
+      connectionString: env.DATABASE_URL,
       ssl: true,
     },
     push: true,

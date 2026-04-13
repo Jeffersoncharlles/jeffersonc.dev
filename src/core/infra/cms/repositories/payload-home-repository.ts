@@ -6,7 +6,7 @@ import {
   HomeCardSchema,
 } from '@/core/domain/entities/home-card'
 
-export class PayloadRepository implements HomeCardsRepository {
+export class PayloadHomeRepository implements HomeCardsRepository {
   async findAllCardsHome(): Promise<HomeCardEntity[]> {
     const payload = await getPayload({ config })
     const { docs } = await payload.find({ collection: 'home-cards' })
