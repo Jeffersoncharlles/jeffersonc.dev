@@ -252,27 +252,10 @@ export interface Education {
 export interface Blog {
   id: string;
   title: string;
-  slug: string;
-  author: {
-    name: string;
-    avatar?: (string | null) | Media;
-  };
-  category?: ('frontend' | 'backend' | 'career')[] | null;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
+  slug?: string | null;
+  category: 'frontend' | 'backend' | 'career';
+  description?: string | null;
+  markdown: string;
   publishedAt: string;
   updatedAt: string;
   createdAt: string;
@@ -481,14 +464,9 @@ export interface EducationSelect<T extends boolean = true> {
 export interface BlogSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
-  author?:
-    | T
-    | {
-        name?: T;
-        avatar?: T;
-      };
   category?: T;
-  content?: T;
+  description?: T;
+  markdown?: T;
   publishedAt?: T;
   updatedAt?: T;
   createdAt?: T;

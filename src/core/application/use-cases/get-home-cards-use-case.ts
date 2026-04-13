@@ -5,7 +5,7 @@ export class GetHomeCardsUseCase {
 
   async execute() {
     try {
-      return await this.repository.findAll()
+      return await this.repository.findAllCardsHome()
     } catch (error) {
       console.error('HomeCardsUseCase Error:', error)
 

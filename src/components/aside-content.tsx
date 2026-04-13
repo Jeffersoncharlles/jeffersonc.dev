@@ -1,8 +1,6 @@
 import {
-  Activity,
   AppWindow,
   Award,
-  Blocks,
   BookOpen,
   Code,
   Cpu,
@@ -10,6 +8,7 @@ import {
   GraduationCap,
   Laptop,
   Link as LinkIcon,
+  Mail,
   Network,
   PlayCircle,
   QrCode,
@@ -23,16 +22,16 @@ export const AsideContent = () => {
   return (
     <>
       <FolderContent
-        name="app"
+        name="Bio"
         icon={AppWindow}
         iconColor="text-dracula-pink"
         openIconColor="text-dracula-pink"
         defaultOpen
       >
         <FileItem.Root asChild>
-          <Link href="/links">
+          <Link href="/">
             <LinkIcon size={16} className="text-dracula-cyan" />
-            <FileItem.Title>links</FileItem.Title>
+            <FileItem.Title>README.md</FileItem.Title>
           </Link>
         </FileItem.Root>
 
@@ -42,59 +41,46 @@ export const AsideContent = () => {
             <FileItem.Title>social</FileItem.Title>
           </Link>
         </FileItem.Root>
-
-        <FileItem.Root asChild>
-          <Link href="/status">
-            <Activity size={16} className="text-dracula-cyan" />
-            <FileItem.Title>status</FileItem.Title>
-          </Link>
-        </FileItem.Root>
-      </FolderContent>
-
-      <FolderContent
-        name="core"
-        icon={Cpu}
-        iconColor="text-dracula-purple"
-        openIconColor="text-dracula-purple"
-        defaultOpen
-      >
-        <FileItem.Root asChild>
-          <Link href="/application">
-            <Award size={16} className="text-dracula-orange" />
-            <FileItem.Title>application</FileItem.Title>
-          </Link>
-        </FileItem.Root>
-        <FileItem.Root asChild>
-          <Link href="/domain">
-            <GraduationCap size={16} className="text-dracula-pink" />
-            <FileItem.Title>domain</FileItem.Title>
-          </Link>
-        </FileItem.Root>
-      </FolderContent>
-
-      <FolderContent
-        name="infra"
-        icon={Database}
-        iconColor="text-dracula-cyan"
-        openIconColor="text-dracula-cyan"
-        defaultOpen
-      >
-        <FileItem.Root asChild>
-          <Link href="/stack">
-            <Blocks size={16} className="text-dracula-purple" />
-            <FileItem.Title>stack</FileItem.Title>
-          </Link>
-        </FileItem.Root>
         <FileItem.Root asChild>
           <Link href="/setup">
             <Laptop size={16} className="text-dracula-green" />
             <FileItem.Title>setup</FileItem.Title>
           </Link>
         </FileItem.Root>
+      </FolderContent>
+
+      <FolderContent
+        name="Formação"
+        icon={Cpu}
+        iconColor="text-dracula-purple"
+        openIconColor="text-dracula-purple"
+        defaultOpen
+      >
         <FileItem.Root asChild>
-          <Link href="/integrations">
+          <Link href="/academica">
+            <Award size={16} className="text-dracula-orange" />
+            <FileItem.Title>academica</FileItem.Title>
+          </Link>
+        </FileItem.Root>
+        <FileItem.Root asChild>
+          <Link href="/certificacoes">
+            <GraduationCap size={16} className="text-dracula-pink" />
+            <FileItem.Title>certificações</FileItem.Title>
+          </Link>
+        </FileItem.Root>
+      </FolderContent>
+
+      <FolderContent
+        name="Experiência"
+        icon={Database}
+        iconColor="text-dracula-cyan"
+        openIconColor="text-dracula-cyan"
+        defaultOpen
+      >
+        <FileItem.Root asChild>
+          <Link href="/experiencia">
             <Network size={16} className="text-dracula-yellow" />
-            <FileItem.Title>integrations</FileItem.Title>
+            <FileItem.Title>experiência</FileItem.Title>
           </Link>
         </FileItem.Root>
       </FolderContent>
@@ -124,6 +110,13 @@ export const AsideContent = () => {
         <Link href="/blog">
           <BookOpen size={16} className="text-dracula-yellow" />
           <FileItem.Title>blog</FileItem.Title>
+        </Link>
+      </FileItem.Root>
+
+      <FileItem.Root asChild>
+        <Link href="/contato">
+          <Mail size={16} className="text-dracula-cyan" />
+          <FileItem.Title>contato.tsx</FileItem.Title>
         </Link>
       </FileItem.Root>
     </>

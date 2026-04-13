@@ -1,33 +1,50 @@
 import type { CollectionConfig } from 'payload'
 
+const slugify = (value: string) => {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+}
+
 export const Blog: CollectionConfig = {
   slug: 'blog',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'author', 'publishedAt'],
+    defaultColumns: ['title', 'category', 'publishedAt'],
   },
   access: { read: () => true },
+  hooks: {
+    beforeValidate: [
+      ({ data }) => {
+        if (!data) {
+          return data
+        }
+
+        if (!data.slug && data.title) {
+          data.slug = slugify(data.title)
+        }
+
+        return data
+      },
+    ],
+  },
   fields: [
     { name: 'title', type: 'text', required: true },
     {
       name: 'slug',
       type: 'text',
       unique: true,
-      required: true,
       admin: { position: 'sidebar' },
-    },
-    {
-      name: 'author',
-      type: 'group',
-      fields: [
-        { name: 'name', type: 'text', required: true },
-        { name: 'avatar', type: 'upload', relationTo: 'media' },
-      ],
     },
     {
       name: 'category',
       type: 'select',
-      hasMany: true, // Pode ou não ter múltiplas categorias
+      required: true,
       options: [
         { label: 'Frontend', value: 'frontend' },
         { label: 'Backend', value: 'backend' },
@@ -35,9 +52,15 @@ export const Blog: CollectionConfig = {
       ],
     },
     {
-      name: 'content',
-      type: 'richText', // Suporta o Lexical Editor (textos, imagens, links)
+      name: 'description',
+      type: 'textarea',
+      label: 'Resumo (opcional)',
+    },
+    {
+      name: 'markdown',
+      type: 'textarea',
       required: true,
+      label: 'Conteudo em Markdown',
     },
     {
       name: 'publishedAt',

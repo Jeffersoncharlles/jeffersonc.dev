@@ -10,6 +10,12 @@ const CardRoot = ({ className, ...props }: CardRootProps) => {
         'overflow-hidden group',
         'border border-[rgba(255,255,255,0.1)]   ',
         'hover:border-[rgba(139,233,253,0.3)] transition-colors cursor-pointer',
+        'data-[color=blue]:border-dracula-cyan/30 data-[color=blue]:hover:border-dracula-cyan/60',
+        'data-[color=purple]:border-dracula-purple/30 data-[color=purple]:hover:border-dracula-purple/60',
+        'data-[color=pink]:border-dracula-pink/30 data-[color=pink]:hover:border-dracula-pink/60',
+        'data-[color=green]:border-dracula-green/30 data-[color=green]:hover:border-dracula-green/60',
+        'data-[color=orange]:border-dracula-orange/30 data-[color=orange]:hover:border-dracula-orange/60',
+
         className,
       )}
       {...props}

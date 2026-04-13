@@ -1,10 +1,8 @@
-import { AppWindow } from 'lucide-react'
 import { Suspense } from 'react'
+import { CardList } from '@/app/(app)/(vscode)/_components/card-list'
+import { CardListSkeleton } from '@/app/(app)/(vscode)/_components/card-list-skeleton'
 import Breadcrumbs from '@/components/breadcrumbs'
-import { CardList } from '@/components/card-list'
 import TabsBar from '@/components/tabs-bar'
-import { Badge } from '@/components/UI/badge'
-import { Card } from '@/components/UI/card'
 
 const imgMargin =
   'https://www.figma.com/api/mcp/asset/795e5aa1-6219-4c4b-a5ca-31f4a9fe7ec0'
@@ -28,24 +26,23 @@ const imgIcon5 =
 
 export default function VSCodeMainEditorArea() {
   return (
-    <div className="relative size-full overflow-hidden flex flex-col bg-background">
-      {/* Tabs Bar */}
-
+    <div className="relative size-full overflow-hidden flex flex-col bg-background ">
       <TabsBar />
-      {/* Breadcrumbs */}
       <Breadcrumbs />
 
       {/* Content Area */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-10 relative">
-        <div className="flex flex-col gap-9 md:gap-12 max-w-[896px] w-full mx-auto">
+      <div className="flex-1 overflow-y-auto p-4 md:p-10 relative ">
+        <div className="flex flex-col gap-9 md:gap-12 max-w-4xl w-full mx-auto">
           {/* Header */}
-          <div className="flex flex-col gap-[12px] w-full">
+          <div className="flex flex-col gap-4 w-full">
             <div className="w-full">
-              <h1 className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-[28px] md:text-[36px] text-white tracking-[-0.9px]">
+              <h1 className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-2xl md:text-[36px] text-white tracking-[-0.9px]">
                 Jefferson Charlles
               </h1>
 
-              <h5>Engenheiro de Software Full Stack</h5>
+              <h5 className="font-['Liberation_Mono:Regular',sans-serif] text-[13px] md:text-[14px] text-dracula-purple opacity-80">
+                Engenheiro de Software Full Stack
+              </h5>
             </div>
             <div className="w-full">
               <p className="font-['Liberation_Mono:Regular',sans-serif] text-[13px] md:text-[14px] text-dracula-purple opacity-80">
@@ -53,8 +50,8 @@ export default function VSCodeMainEditorArea() {
                 Engenharia de Software.
               </p>
             </div>
-            <div className="flex flex-wrap gap-[12px] pt-[12px] w-full">
-              <div className="bg-[rgba(189,147,249,0.2)] border border-[rgba(189,147,249,0.3)] flex items-center px-[13px] py-[5px] rounded-[12px]">
+            <div className="flex flex-wrap gap-2 pt-2 w-full">
+              <div className="bg-dracula-purple/15 border border-dracula-purple flex items-center px-[13px] py-[5px] rounded-[12px]">
                 <span className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-dracula-purple text-[10px] tracking-[1px] uppercase">
                   PÓS-GRADUADO (2026)
                 </span>
@@ -68,231 +65,10 @@ export default function VSCodeMainEditorArea() {
           </div>
 
           {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] md:gap-[32px] pb-[80px] w-full">
-            {/* Card 1 */}
-            <Suspense fallback={<div>Loading...</div>}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 pb-10 w-full">
+            <Suspense fallback={<CardListSkeleton />}>
               <CardList />
             </Suspense>
-            {/* <Card.Root>
-              <Card.Overlay />
-              <Card.Header>
-                <Badge.Root>
-                  <Badge.Content>UI Layer</Badge.Content>
-                </Badge.Root>
-
-                <AppWindow className="size-4 opacity-70 group-hover:opacity-100 transition-opacity text-cyan-300" />
-              </Card.Header>
-              <Card.Title>
-                <h3 className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-[20px] text-white">
-                  Interfaces de altíssima performance, responsivas e acessíveis
-                  (Lighthouse 90).
-                </h3>
-              </Card.Title>
-              <Card.Content>
-                <p className="font-['Inter:Medium',sans-serif] font-medium text-[13px] md:text-[14px] text-[rgba(248,248,242,0.8)] leading-[1.6]">
-                  Responsável pelas rotas, layouts e Server Actions. Atua como o
-                  ponto de entrada da interface para o usuário.
-                </p>
-              </Card.Content>
-              <Card.Footer>
-                <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-cyan text-[11px] bg-dracula-cyan/10 px-2 py-1 rounded">
-                  /react /nextjs-15
-                </span>
-                <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-cyan text-[11px] bg-dracula-cyan/10 px-2 py-1 rounded">
-                  /tailwind-v4 /framer-motion
-                </span>
-              </Card.Footer>
-            </Card.Root> */}
-            {/*
-
-            <div className="border border-[rgba(255,255,255,0.1)] flex flex-col gap-[14.8px] p-[24px] md:p-[29px] relative rounded-[24px] overflow-hidden group hover:border-[rgba(189,147,249,0.3)] transition-colors cursor-pointer">
-              <div className="absolute backdrop-blur-[6px] bg-[rgba(68,71,90,0.3)] inset-0 pointer-events-none group-hover:bg-[rgba(68,71,90,0.5)] transition-colors" />
-              <div className="relative w-full flex items-start justify-between z-10">
-                <div className="bg-[rgba(189,147,249,0.1)] border border-[rgba(189,147,249,0.2)] flex px-[13px] py-[7px] rounded-[12px]">
-                  <span className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-dracula-purple text-[10px] tracking-[1px] uppercase">
-                    Application
-                  </span>
-                </div>
-                <div className="w-[15px] h-[15px] relative flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity">
-                  <img
-                    alt=""
-                    className="w-full h-full object-contain"
-                    src={imgIcon1}
-                  />
-                </div>
-              </div>
-              <div className="relative w-full pt-[5.2px] z-10">
-                <h3 className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-[20px] text-white">
-                  Camada de Aplicação
-                </h3>
-              </div>
-              <div className="relative w-full z-10">
-                <p className="font-['Inter:Medium',sans-serif] font-medium text-[13px] md:text-[14px] text-[rgba(248,248,242,0.8)] leading-[1.6]">
-                  Orquestra o fluxo de dados e implementa os Casos de Uso.
-                  Regras de negócio específicas sem depender de frameworks.
-                </p>
-              </div>
-              <div className="opacity-70 relative w-full pt-[9.2px] flex flex-wrap gap-[12px] z-10 group-hover:opacity-100 transition-opacity">
-                <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-purple text-[11px] bg-dracula-purple/10 px-2 py-1 rounded">
-                  /core/application
-                </span>
-                <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-purple text-[11px] bg-dracula-purple/10 px-2 py-1 rounded">
-                  /use-cases
-                </span>
-              </div>
-            </div>
-
-
-            <div className="border border-[rgba(255,255,255,0.1)] flex flex-col gap-[14.8px] p-[24px] md:p-[29px] relative rounded-[24px] overflow-hidden group hover:border-[rgba(255,121,198,0.3)] transition-colors cursor-pointer">
-              <div className="absolute backdrop-blur-[6px] bg-[rgba(68,71,90,0.3)] inset-0 pointer-events-none group-hover:bg-[rgba(68,71,90,0.5)] transition-colors" />
-              <div className="relative w-full flex items-start justify-between z-10">
-                <div className="bg-[rgba(255,121,198,0.1)] border border-[rgba(255,121,198,0.2)] flex px-[13px] py-[7px] rounded-[12px]">
-                  <span className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-dracula-pink text-[10px] tracking-[1px] uppercase">
-                    Core Domain
-                  </span>
-                </div>
-                <div className="w-[12px] h-[15px] relative flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity">
-                  <img
-                    alt=""
-                    className="w-full h-full object-contain"
-                    src={imgIcon2}
-                  />
-                </div>
-              </div>
-              <div className="relative w-full pt-[5.2px] z-10">
-                <h3 className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-[20px] text-white">
-                  Domínio (Core)
-                </h3>
-              </div>
-              <div className="relative w-full z-10">
-                <p className="font-['Inter:Medium',sans-serif] font-medium text-[13px] md:text-[14px] text-[rgba(248,248,242,0.8)] leading-[1.6]">
-                  Onde definimos as Entidades e Interfaces de repositórios.
-                  Camada mais pura e central, independente de tecnologia.
-                </p>
-              </div>
-              <div className="opacity-70 relative w-full pt-[9.2px] flex flex-wrap gap-[12px] z-10 group-hover:opacity-100 transition-opacity">
-                <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-pink text-[11px] bg-dracula-pink/10 px-2 py-1 rounded">
-                  /core/domain
-                </span>
-                <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-pink text-[11px] bg-dracula-pink/10 px-2 py-1 rounded">
-                  /entities
-                </span>
-              </div>
-            </div>
-
-
-            <div className="border border-[rgba(255,255,255,0.1)] flex flex-col gap-[14.8px] p-[24px] md:p-[29px] relative rounded-[24px] overflow-hidden group hover:border-[rgba(80,250,123,0.3)] transition-colors cursor-pointer">
-              <div className="absolute backdrop-blur-[6px] bg-[rgba(68,71,90,0.3)] inset-0 pointer-events-none group-hover:bg-[rgba(68,71,90,0.5)] transition-colors" />
-              <div className="relative w-full flex items-start justify-between z-10">
-                <div className="bg-[rgba(80,250,123,0.1)] border border-[rgba(80,250,123,0.2)] flex px-[13px] py-[7px] rounded-[12px]">
-                  <span className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-dracula-green text-[10px] tracking-[1px] uppercase">
-                    Infrastructure
-                  </span>
-                </div>
-                <div className="w-[13.5px] h-[13.5px] relative flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity">
-                  <img
-                    alt=""
-                    className="w-full h-full object-contain"
-                    src={imgIcon3}
-                  />
-                </div>
-              </div>
-              <div className="relative w-full pt-[5.2px] z-10">
-                <h3 className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-[20px] text-white">
-                  Infraestrutura
-                </h3>
-              </div>
-              <div className="relative w-full z-10">
-                <p className="font-['Inter:Medium',sans-serif] font-medium text-[13px] md:text-[14px] text-[rgba(248,248,242,0.8)] leading-[1.6]">
-                  Implementações técnicas: Repositórios Prisma, clientes de API
-                  e integrações com serviços externos.
-                </p>
-              </div>
-              <div className="opacity-70 relative w-full pt-[9.2px] flex flex-wrap gap-[12px] z-10 group-hover:opacity-100 transition-opacity">
-                <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-green text-[11px] bg-dracula-green/10 px-2 py-1 rounded">
-                  /core/infra
-                </span>
-                <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-green text-[11px] bg-dracula-green/10 px-2 py-1 rounded">
-                  /repositories
-                </span>
-              </div>
-            </div>
-
-
-            <div className="border border-[rgba(255,255,255,0.1)] flex flex-col gap-[14.8px] p-[24px] md:p-[29px] relative rounded-[24px] overflow-hidden group hover:border-[rgba(241,250,140,0.3)] transition-colors cursor-pointer">
-              <div className="absolute backdrop-blur-[6px] bg-[rgba(68,71,90,0.3)] inset-0 pointer-events-none group-hover:bg-[rgba(68,71,90,0.5)] transition-colors" />
-              <div className="relative w-full flex items-start justify-between z-10">
-                <div className="bg-[rgba(241,250,140,0.1)] border border-[rgba(241,250,140,0.2)] flex px-[13px] py-[7px] rounded-[12px]">
-                  <span className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-dracula-yellow text-[10px] tracking-[1px] uppercase">
-                    Unit Tests
-                  </span>
-                </div>
-                <div className="w-[10.5px] h-[14.25px] relative flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity">
-                  <img
-                    alt=""
-                    className="w-full h-full object-contain"
-                    src={imgIcon4}
-                  />
-                </div>
-              </div>
-              <div className="relative w-full pt-[5.2px] z-10">
-                <h3 className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-[20px] text-white">
-                  Testes Unitários
-                </h3>
-              </div>
-              <div className="relative w-full z-10">
-                <p className="font-['Inter:Medium',sans-serif] font-medium text-[13px] md:text-[14px] text-[rgba(248,248,242,0.8)] leading-[1.6]">
-                  Garantia de qualidade granular. Testes para Casos de Uso e
-                  lógica de domínio, garantindo funcionamento isolado.
-                </p>
-              </div>
-              <div className="opacity-70 relative w-full pt-[9.2px] flex flex-wrap gap-[12px] z-10 group-hover:opacity-100 transition-opacity">
-                <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-yellow text-[11px] bg-dracula-yellow/10 px-2 py-1 rounded">
-                  /src/test
-                </span>
-                <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-yellow text-[11px] bg-dracula-yellow/10 px-2 py-1 rounded">
-                  /vitest.config.ts
-                </span>
-              </div>
-            </div>
-
-
-            <div className="border border-[rgba(255,255,255,0.1)] flex flex-col gap-[14.8px] p-[24px] md:p-[29px] relative rounded-[24px] overflow-hidden group hover:border-[rgba(255,184,108,0.3)] transition-colors cursor-pointer">
-              <div className="absolute backdrop-blur-[6px] bg-[rgba(68,71,90,0.3)] inset-0 pointer-events-none group-hover:bg-[rgba(68,71,90,0.5)] transition-colors" />
-              <div className="relative w-full flex items-start justify-between z-10">
-                <div className="bg-[rgba(255,184,108,0.1)] border border-[rgba(255,184,108,0.2)] flex px-[13px] py-[7px] rounded-[12px]">
-                  <span className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-dracula-orange text-[10px] tracking-[1px] uppercase">
-                    E2E Tests
-                  </span>
-                </div>
-                <div className="w-[15px] h-[12px] relative flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity">
-                  <img
-                    alt=""
-                    className="w-full h-full object-contain"
-                    src={imgIcon5}
-                  />
-                </div>
-              </div>
-              <div className="relative w-full pt-[5.2px] z-10">
-                <h3 className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-[20px] text-white">
-                  End-to-End Testing
-                </h3>
-              </div>
-              <div className="relative w-full z-10">
-                <p className="font-['Inter:Medium',sans-serif] font-medium text-[13px] md:text-[14px] text-[rgba(248,248,242,0.8)] leading-[1.6]">
-                  Testes de fluxos completos com Playwright. Simulam o
-                  comportamento do usuário final em jornadas críticas.
-                </p>
-              </div>
-              <div className="opacity-70 relative w-full pt-[9.2px] flex flex-wrap gap-[12px] z-10 group-hover:opacity-100 transition-opacity">
-                <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-orange text-[11px] bg-dracula-orange/10 px-2 py-1 rounded">
-                  /e2e/*.spec.ts
-                </span>
-                <span className="font-['Liberation_Mono:Bold',sans-serif] text-dracula-orange text-[11px] bg-dracula-orange/10 px-2 py-1 rounded">
-                  /playwright.config.ts
-                </span>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

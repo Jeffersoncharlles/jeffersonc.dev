@@ -16,6 +16,12 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  bin: [
+    {
+      key: 'seed-db',
+      scriptPath: path.resolve(dirname, 'seed-home-cards.ts'),
+    },
+  ],
   admin: {
     user: Users.slug,
   },

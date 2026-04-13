@@ -47,7 +47,7 @@ export default function VSCodeLayout({
     <div className="vscode-layout-background flex-1 flex flex-col items-center justify-center p-2 sm:p-3 md:p-6 lg:p-12 relative overflow-hidden">
       <div className="vscode-layout-glow" />
       <div
-        className="hidden lg:flex w-full max-w-7xl h-205 bg-card backdrop-blur-md border border-border rounded-3xl flex-col overflow-hidden relative z-10"
+        className="hidden lg:flex w-full max-w-7xl h-246 bg-card backdrop-blur-md border border-border rounded-3xl flex-col overflow-hidden relative z-10"
         style={{ boxShadow: 'var(--shadow-vscode-card)' }}
       >
         {uiContent}

@@ -1,0 +1,45 @@
+import * as LucideIcons from 'lucide-react'
+import { AppWindow, type LucideIcon } from 'lucide-react'
+
+type CardColor = 'blue' | 'purple' | 'green' | 'orange'
+
+const iconColorByCardColor: Record<CardColor, string> = {
+  blue: 'text-dracula-cyan',
+  purple: 'text-dracula-purple',
+  green: 'text-dracula-green',
+  orange: 'text-dracula-orange',
+}
+
+const toPascalCase = (value: string) => {
+  return value
+    .trim()
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/[-_\s]+/g, ' ')
+    .split(' ')
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+    .join('')
+}
+
+export const Icon = ({
+  name,
+  colorName,
+  className,
+}: {
+  name: string
+  colorName: CardColor
+  className?: string
+}) => {
+  const iconName = toPascalCase(name)
+  const DynamicIcon =
+    (LucideIcons[iconName as keyof typeof LucideIcons] as
+      | LucideIcon
+      | undefined) ?? AppWindow
+
+  return (
+    <DynamicIcon
+      size={16}
+      className={`${iconColorByCardColor[colorName]} ${className ?? ''}`.trim()}
+    />
+  )
+}
