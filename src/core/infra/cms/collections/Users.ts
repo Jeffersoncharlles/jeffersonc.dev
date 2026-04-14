@@ -7,7 +7,7 @@ export const Users: CollectionConfig = {
   slug: 'users',
   auth: {
     cookies: {
-      domain: env.PAYLOAD_COOKIE_DOMAIN,
+      // domain: env.PAYLOAD_COOKIE_DOMAIN,
       sameSite: env.PAYLOAD_COOKIE_SAMESITE,
       secure: env.PAYLOAD_COOKIE_SECURE ?? isProduction,
     },
