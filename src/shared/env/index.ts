@@ -31,4 +31,25 @@ const envSchema = z.object({
   PAYLOAD_COOKIE_PREFIX: z.string().default('payload'),
 })
 
-export const env = envSchema.parse(process.env)
+const rawEnv = envSchema.parse(process.env)
+
+const deriveCookieDomain = (serverUrl: string): string | undefined => {
+  try {
+    const hostname = new URL(serverUrl).hostname
+    // Strip www. prefix and add leading dot for cross-subdomain scope
+    if (hostname.startsWith('www.')) {
+      return `.${hostname.slice(4)}`
+    }
+    // Ensure leading dot for domain scope
+    return hostname.startsWith('.') ? hostname : `.${hostname}`
+  } catch {
+    return undefined
+  }
+}
+
+export const env = {
+  ...rawEnv,
+  PAYLOAD_COOKIE_DOMAIN:
+    rawEnv.PAYLOAD_COOKIE_DOMAIN ??
+    deriveCookieDomain(rawEnv.NEXT_PUBLIC_SERVER_URL),
+}

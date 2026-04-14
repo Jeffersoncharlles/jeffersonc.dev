@@ -30,7 +30,7 @@ export default buildConfig({
   },
 
   editor: lexicalEditor(),
-  // cookiePrefix: env.PAYLOAD_COOKIE_PREFIX,
+  cookiePrefix: env.PAYLOAD_COOKIE_PREFIX,
   serverURL: env.NEXT_PUBLIC_SERVER_URL,
   secret: env.PAYLOAD_SECRET,
   db: postgresAdapter({
