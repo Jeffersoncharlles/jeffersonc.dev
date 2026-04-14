@@ -21,22 +21,24 @@ const buildAllowedOrigins = (serverURL: string): string[] => {
   try {
     const parsed = new URL(serverURL)
     const hostname = parsed.hostname
+    const origin = parsed.origin
+
     const isLocalhost = hostname === 'localhost'
     const isIPv4 = /^\d{1,3}(\.\d{1,3}){3}$/.test(hostname)
 
     if (isLocalhost || isIPv4) {
-      return [serverURL]
+      return [origin]
     }
 
     const alternateHostname = hostname.startsWith('www.')
       ? hostname.replace(/^www\./, '')
       : `www.${hostname}`
 
-    const alternate = `${parsed.protocol}//${alternateHostname}${parsed.port ? `:${parsed.port}` : ''}`
+    const alternateOrigin = `${parsed.protocol}//${alternateHostname}${parsed.port ? `:${parsed.port}` : ''}`
 
-    return Array.from(new Set([serverURL, alternate]))
+    return Array.from(new Set([origin, alternateOrigin]))
   } catch {
-    return [serverURL]
+    return [serverURL.replace(/\/$/, '')]
   }
 }
 
