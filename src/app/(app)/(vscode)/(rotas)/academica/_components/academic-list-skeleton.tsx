@@ -3,29 +3,29 @@ import { Skeleton } from '@/components/UI/skeleton'
 export const AcademicListSkeleton = () => {
   return (
     <>
-      {Array.from({ length: 4 }).map((_, index) => (
-        <div key={index.toString()} className="relative pl-12 md:pl-20">
-          <div className="absolute left-6.5 md:left-10.5 top-6 w-3 h-3 rounded-full border-4 border-background z-20 shadow-[0_0_8px_rgba(0,0,0,0.5)] bg-dracula-green shadow-dracula-green" />
-          <div className="w-full bg-card rounded-lg p-6 border border-border">
-            <Skeleton className="w-3/4 h-6" />
-            <Skeleton className="w-3/4 h-6" />
-            <Skeleton className="text-dracula-purple font-medium">
-              <Skeleton className="w-1/4 h-4" />
-            </Skeleton>
-            <Skeleton className="text-sm text-muted-foreground leading-relaxed py-4">
-              <Skeleton className="w-full h-3 mb-2" />
-              <Skeleton className="w-full h-3 mb-2" />
-              <Skeleton className="w-3/4 h-3" />
-            </Skeleton>
-            <Skeleton className="text-sm text-muted-foreground leading-relaxed py-4">
-              <Skeleton className="w-full h-3 mb-2" />
-              <Skeleton className="w-full h-3 mb-2" />
-              <Skeleton className="w-3/4 h-3" />
-            </Skeleton>
-            <Skeleton className="flex">
-              <Skeleton className="w-1/4 h-3" />
-              <Skeleton className="w-1/4 h-3" />
-            </Skeleton>
+      {Array.from({ length: 2 }).map((_, sectionIndex) => (
+        <div
+          key={`section-${sectionIndex.toString()}`}
+          className="col-span-full w-full rounded-3xl border border-border/60 bg-card p-6"
+        >
+          <div className="mb-6 flex items-center justify-between">
+            <Skeleton className="h-6 w-2/5" />
+            <Skeleton className="h-6 w-24 rounded-xl" />
+          </div>
+
+          <div className="space-y-3">
+            {Array.from({ length: 2 }).map((_, itemIndex) => (
+              <div
+                key={`item-${itemIndex.toString()}`}
+                className="rounded-2xl border border-border/60 bg-background/20 p-4"
+              >
+                <Skeleton className="h-4 w-1/3" />
+                <Skeleton className="mt-2 h-5 w-3/4" />
+                <Skeleton className="mt-2 h-4 w-1/2" />
+                <Skeleton className="mt-4 h-3 w-full" />
+                <Skeleton className="mt-2 h-3 w-5/6" />
+              </div>
+            ))}
           </div>
         </div>
       ))}

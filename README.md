@@ -1,51 +1,151 @@
 # jeffersonc.dev
 
-Welcome to the source code of my personal portfolio and blog. This project is designed to be a unique, interactive experience that goes beyond a traditional static website.
+A personal portfolio and blog built as an interactive developer experience. The project blends a VS Code-inspired shell, responsive device mockups, a separate editorial blog, and a Payload CMS-backed content layer.
 
-## 🌟 The Proposal
+Um portfólio pessoal e blog construídos como uma experiência interativa para devs. O projeto combina uma interface inspirada em VS Code, mockups responsivos de dispositivos, um blog editorial separado e uma camada de conteúdo baseada em Payload CMS.
 
-The core idea of this portfolio is to provide an immersive, developer-centric environment:
+## Overview / Visão geral
 
-- **VS Code Theme:** The main interface mimics the look and feel of a modern code editor (inspired by VS Code and the Dracula/Tokio Night themes), complete with a functional file explorer sidebar.
-- **Responsive Device Mockups:** Instead of simply stacking elements on smaller screens, the UI intelligently embeds itself into realistic device mockups. On desktop/tablet, you'll see the interface within an iPad frame. On mobile, it seamlessly adapts into an iPhone frame.
-- **Distinct Blog Experience:** Navigating to the blog transitions you out of the code editor and into a clean, minimalist editorial layout. Smooth page transitions connect these two distinct visual worlds.
+This repository is organized around three main experiences:
 
-## 🛠️ Technologies Used
+- The main portfolio uses a VS Code-style interface with a file explorer, header, and responsive tablet/mobile mockups.
+- The blog uses a cleaner editorial layout with its own route group and transitions.
+- The content model is managed through Payload CMS and a PostgreSQL database.
 
-This project is built with modern, cutting-edge web technologies:
+Este repositório é organizado em torno de três experiências principais:
 
-- **[Next.js 16 (App Router)](https://nextjs.org/)** - For optimal performance, routing, and Server Components.
-- **[React 19](https://react.dev/)** - The latest version of React for building the user interface.
-- **[TypeScript](https://www.typescriptlang.org/)** - Strongly typed JavaScript for safer and more maintainable code.
-- **[Tailwind CSS (v4)](https://tailwindcss.com/)** - Utility-first CSS framework for rapid, custom UI development without leaving the HTML.
-- **[Framer Motion](https://www.framer.com/motion/)** - Used for orchestrating smooth, fluid page transitions between the portfolio and blog routes.
-- **[Lucide React](https://lucide.dev/)** - Beautiful, consistent icon set.
-- **[Biome](https://biomejs.dev/)** - Extremely fast formatter and linter.
-- **[pnpm](https://pnpm.io/)** - Fast, disk space efficient package manager.
+- O portfólio principal usa uma interface no estilo VS Code, com explorer, header e mockups responsivos para tablet/mobile.
+- O blog usa um layout editorial mais limpo, com seu próprio grupo de rotas e transições.
+- O modelo de conteúdo é gerenciado com Payload CMS e PostgreSQL.
 
-## 🚀 Getting Started
+## Stack
 
-First, install the dependencies using pnpm:
+### Frameworks and runtime / Frameworks e runtime
+
+- Next.js 16.2.2
+- React 19.2.4
+- React DOM 19.2.4
+- TypeScript 5
+
+### CMS and data / CMS e dados
+
+- Payload 3.82.1
+- @payloadcms/next 3.82.1
+- @payloadcms/db-postgres 3.82.1
+- @payloadcms/richtext-lexical 3.82.1
+- PostgreSQL
+- Zod for environment validation and runtime input validation
+
+### UI, styling, and motion / UI, estilos e movimento
+
+- Tailwind CSS v4
+- @tailwindcss/postcss
+- Framer Motion
+- motion
+- Lucide React
+- class-variance-authority
+- clsx
+- tailwind-merge
+- radix-ui
+- date-fns
+
+### Testing and quality / Testes e qualidade
+
+- Jest
+- jest-environment-jsdom
+- @testing-library/react
+- @testing-library/jest-dom
+- @testing-library/user-event
+- Playwright
+- @playwright/test
+- @faker-js/faker
+- Biome
+- lefthook
+
+## Project structure / Estrutura do projeto
+
+- `src/app/(app)/(vscode)` - main portfolio shell with the VS Code-inspired layout and device mockups.
+- `src/app/(app)/(vscode)/(rotas)` - route content rendered inside the editor-like shell.
+- `src/app/(app)/blog` - editorial blog layout and blog routes.
+- `src/app/(payload)` - Payload admin, API, and related server routes.
+- `src/app/_components` - app-level shared components, such as the header.
+- `src/components` - reusable UI components, sidebar pieces, and device mockups.
+- `src/core` - clean architecture layers: application, domain, and infra.
+- `src/core/application` - use cases and repository contracts.
+- `src/core/domain` - domain entities.
+- `src/core/infra` - CMS collections, repositories, and service implementations.
+- `src/shared` - shared utilities, environment validation, and app-wide helpers.
+- `src/tests` - unit and component tests.
+- `src/tests/components` - component-oriented tests.
+- `src/tests/core` - infrastructure and repository tests.
+- `migrations` - database migration files.
+- `public` and `media` - static assets and image files.
+- `playwright.config.ts` - Playwright configuration. No checked-in e2e specs are currently present.
+
+## Payload CMS and database / Payload CMS e banco
+
+The CMS is configured in `payload.config.ts` and uses PostgreSQL through the Payload Postgres adapter.
+
+Collections and globals currently registered:
+
+- Users
+- HomeCards
+- Projects
+- Infrastructure
+- Education
+- Blog
+- Media
+- SystemStatus global
+
+Environment variables required by the app:
+
+- `DATABASE_URL`
+- `PAYLOAD_SECRET`
+- `NEXT_PUBLIC_SERVER_URL`
+- `NODE_ENV` is optional and defaults to `development`
+
+The environment contract is validated in `src/shared/env/index.ts`.
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `pnpm dev` | Starts the Next.js development server. |
+| `pnpm build` | Builds the production application. |
+| `pnpm start` | Starts the production server. |
+| `pnpm lint` | Runs Biome checks. |
+| `pnpm format` | Formats the codebase with Biome. |
+| `pnpm typecheck` | Runs TypeScript without emitting output. |
+| `pnpm test` | Runs Jest unit tests. |
+| `pnpm test:watch` | Runs Jest in watch mode. |
+| `pnpm test:coverage` | Runs Jest coverage output. |
+| `pnpm test:e2e` | Runs Playwright tests. |
+| `pnpm test:e2e:ui` | Runs Playwright with UI mode. |
+| `pnpm seed` | Seeds the database through Payload. |
+| `pnpm postinstall` | Regenerates the Payload import map and types. |
+| `pnpm payload:fix` | Helper script for Payload code generation. |
+
+## Development
 
 ```bash
 pnpm install
-```
-
-Then, run the development server:
-
-```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the local app in the browser after the dev server starts.
 
-## 📁 Project Structure
+For a more complete local workflow, use:
 
-- `src/app/(vscode)`: Contains the main portfolio layout, mimicking a code editor and handling the responsive device mockups (iPad/iPhone).
-- `src/app/blog`: The editorial-style blog section with its own distinct layout.
-- `src/components`: Reusable UI components, including the Sidebar (`Aside`), Header, and device mockups.
-- `src/app/globals.css`: Global styles, Tailwind configuration, and CSS variables defining the theme and colors.
+```bash
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm test:e2e
+```
 
-## 📄 License
+## Notes
 
-This project is open-source and available under the MIT License.
+- The main portfolio experience is intentionally split into desktop, tablet, and mobile shells.
+- The codebase uses a clean architecture approach in `src/core` instead of putting all data logic inside route handlers.
+- Test files currently live under `src/tests`, not a root-level `tests` directory.
+- E2E tooling is configured, but no committed Playwright spec files are present at the moment.

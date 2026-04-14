@@ -5,6 +5,7 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import { Blog } from '@/core/infra/cms/collections/Blog'
 import { Education } from '@/core/infra/cms/collections/Education'
+import { Experience } from '@/core/infra/cms/collections/Experience'
 import { HomeCards } from '@/core/infra/cms/collections/HomeCards'
 import { Infrastructure } from '@/core/infra/cms/collections/Infrastructure'
 import { Media } from '@/core/infra/cms/collections/Media'
@@ -20,7 +21,7 @@ export default buildConfig({
   bin: [
     {
       key: 'seed-db',
-      scriptPath: path.resolve(dirname, 'seed.ts'),
+      scriptPath: path.resolve(dirname, 'seed-db-real.ts'),
     },
   ],
   admin: {
@@ -43,6 +44,7 @@ export default buildConfig({
     Projects,
     Infrastructure,
     Education,
+    Experience,
     Blog,
     Media,
   ],

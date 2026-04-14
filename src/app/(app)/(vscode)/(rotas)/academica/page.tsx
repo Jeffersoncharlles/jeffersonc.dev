@@ -4,13 +4,19 @@ import { AcademicListSkeleton } from './_components/academic-list-skeleton'
 
 const ApplicationPage = () => {
   return (
-    <div className="relative flex w-full min-h-full flex-col gap-12 py-8">
-      {/* Vertical Timeline Line */}
-      <div className="absolute top-0 bottom-0 left-8 md:left-12 w-0.5 bg-dracula-purple/20" />
-
-      <Suspense fallback={<AcademicListSkeleton />}>
-        <AcademicList />
-      </Suspense>
+    <div className="space-y-4">
+      <div className="flex flex-col gap-4 w-full">
+        <div className="w-full">
+          <h1 className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-2xl md:text-[36px] text-white  mt-3">
+            Formações e Certificações
+          </h1>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 pb-4 w-full">
+        <Suspense fallback={<AcademicListSkeleton />}>
+          <AcademicList />
+        </Suspense>
+      </div>
     </div>
   )
 }

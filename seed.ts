@@ -24,15 +24,16 @@ type SeedCollection =
   | 'home-cards'
   | 'projects'
   | 'infrastructure'
+  | 'experience'
   | 'education'
 
 const clearCollection = async (collection: SeedCollection) => {
   while (true) {
-    const result = await payload.find({
-      collection,
+    const result = (await payload.find({
+      collection: collection as never,
       limit: 100,
       page: 1,
-    })
+    })) as { docs: Array<{ id: string }> }
 
     if (result.docs.length === 0) {
       break
@@ -40,7 +41,7 @@ const clearCollection = async (collection: SeedCollection) => {
 
     for (const doc of result.docs) {
       await payload.delete({
-        collection,
+        collection: collection as never,
         id: doc.id,
       })
     }
@@ -53,17 +54,17 @@ const upsertByField = async (
   value: string,
   data: Doc,
 ) => {
-  const existing = await payload.find({
-    collection,
+  const existing = (await payload.find({
+    collection: collection as never,
     where: {
       [field]: { equals: value },
     } as Record<string, { equals: string }>,
     limit: 1,
-  })
+  })) as { docs: Array<{ id: string }> }
 
   if (existing.docs.length > 0) {
     const updated = await payload.update({
-      collection,
+      collection: collection as never,
       id: existing.docs[0].id,
       data: data as never,
     })
@@ -71,7 +72,7 @@ const upsertByField = async (
   }
 
   const created = await payload.create({
-    collection,
+    collection: collection as never,
     data: data as never,
     draft: false,
   })
@@ -218,6 +219,44 @@ Qualidade e Segurança: Validação rigorosa via testes estruturados e implement
   },
 ]
 
+const seedExperience = [
+  {
+    companyName: 'RBS TRANSPORTES LTDA',
+    role: 'Engenheiro de Software Full-Cycle',
+    startDate: new Date('2018-01-20').toISOString(),
+    endDate: new Date('2026-02-15').toISOString(),
+    description: `Engenheiro de Software Full-Cycle
+• Responsabilidade Integral (End-to-End): Gestão completa do ciclo de vida das aplicações, desde o levantamento de requisitos e design de arquitetura até a implementação e monitoramento em produção.
+• Infraestrutura e Performance: Gestão autônoma de servidores Linux, configurando proxies reversos (Nginx) para garantir alta disponibilidade, segurança (Hardening) e estabilidade de sistemas de missão crítica.
+• Automação Estratégica: Desenvolvimento de automações avançadas via Shell Script para fluxos de deploy e rotinas operacionais, eliminando erros manuais e otimizando a eficiência do desenvolvimento.
+• Ownership e Continuidade: Atuação como referência técnica principal por quase 8 anos, assegurando a evolução de sistemas e a tradução de necessidades de negócio em soluções de software resilientes.
+• Resolução de Incidentes: Mitigação proativa de ataques e resolução ágil de problemas complexos de infraestrutura, garantindo a continuidade do negócio em ambientes de alta demanda.`,
+  },
+  {
+    companyName: 'JefferDeveloper',
+    role: 'Desenvolvedor Full Stack',
+    startDate: new Date('2020-08-01').toISOString(),
+    endDate: null,
+    description: `Atuação como Engenheiro de Software Full Stack focado no desenvolvimento de sistemas escaláveis e de alta performance. Como responsável pela JefferDeveloper, lidero o ciclo completo de desenvolvimento, desde a análise de requisitos e arquitetura até o deploy e monitoração.
+
+Principais Entregas e Stack Técnica:
+
+Ecossistema Front-end: Especialista na criação de interfaces modernas com React.js, Next.js e Tailwind CSS. Foco total em Web Performance (Core Web Vitals) e acessibilidade, mantendo Lighthouse Scores acima de 90.
+
+Engenharia de Back-end: Desenvolvimento de APIs robustas e escaláveis utilizando Node.js com os frameworks Fastify e Express. Implementação de arquiteturas limpas, validação de dados com Zod e documentação técnica com Swagger/OpenAPI.
+
+Arquitetura de Dados: Modelagem e manipulação de bancos de dados relacionais (PostgreSQL, SQLite) e NoSQL (MongoDB), utilizando Prisma ORM e Knex.js para garantir integridade e performance.
+
+Segurança e Infra: Implementação de fluxos complexos de autenticação (JWT, OAuth) e middlewares customizados. Domínio de ferramentas de CI/CD, Docker e deploys otimizados em plataformas como Vercel e Railway.
+
+Projetos de Destaque: - FinTrack Pro: Sistema de gestão financeira com microsserviços e mensageria (Apache Kafka).
+
+INVFLow: Sistema de processamento de vídeo de alta complexidade com FFmpeg.
+
+Stacks Principais: JavaScript (ES6+), TypeScript, React, Node.js, Next.js, PostgreSQL, Docker, Clean Code.`,
+  },
+]
+
 const seedBlog = [
   {
     title: 'Arquitetura de Front-end com Next.js',
@@ -250,6 +289,7 @@ export const script = async (config: SanitizedConfig) => {
   await clearCollection('blog')
   await clearCollection('home-cards')
   await clearCollection('education')
+  await clearCollection('experience')
   await clearCollection('infrastructure')
   await clearCollection('media')
 
@@ -295,6 +335,10 @@ export const script = async (config: SanitizedConfig) => {
     }
 
     await upsertByField('education', 'name', item.name, educationData)
+  }
+
+  for (const item of seedExperience) {
+    await upsertByField('experience', 'companyName', item.companyName, item)
   }
 
   const projects = [

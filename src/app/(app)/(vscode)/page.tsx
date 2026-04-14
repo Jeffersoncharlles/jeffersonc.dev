@@ -6,12 +6,12 @@ import TabsBar from '@/components/tabs-bar'
 
 export default function VSCodeMainEditorArea() {
   return (
-    <div className="relative  overflow-hidden flex flex-col bg-background ">
+    <div className="relative   overflow-hidden flex flex-col bg-background ">
       <TabsBar />
       <Breadcrumbs />
 
       {/* Content Area */}
-      <div className="flex-1 overflow-y-auto md:p-6 relative ">
+      <div className="flex-1 min-h-234.5 overflow-y-auto md:p-6 relative ">
         <div className="flex flex-col gap-6 p-4 md:gap-8 max-w-5xl w-full mx-auto">
           {/* Header */}
           <div className="flex flex-col gap-4 w-full">

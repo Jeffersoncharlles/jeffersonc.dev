@@ -72,6 +72,7 @@ export interface Config {
     projects: Project;
     infrastructure: Infrastructure;
     education: Education;
+    experience: Experience;
     blog: Blog;
     media: Media;
     'payload-kv': PayloadKv;
@@ -86,6 +87,7 @@ export interface Config {
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     infrastructure: InfrastructureSelect<false> | InfrastructureSelect<true>;
     education: EducationSelect<false> | EducationSelect<true>;
+    experience: ExperienceSelect<false> | ExperienceSelect<true>;
     blog: BlogSelect<false> | BlogSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -272,6 +274,26 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experience".
+ */
+export interface Experience {
+  id: string;
+  companyName: string;
+  role: string;
+  startDate: string;
+  /**
+   * Opcional para experiências em andamento.
+   */
+  endDate?: string | null;
+  /**
+   * Opcional. Aceita conteúdo em markdown.
+   */
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "blog".
  */
 export interface Blog {
@@ -328,6 +350,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'education';
         value: string | Education;
+      } | null)
+    | ({
+        relationTo: 'experience';
+        value: string | Experience;
       } | null)
     | ({
         relationTo: 'blog';
@@ -463,6 +489,19 @@ export interface EducationSelect<T extends boolean = true> {
   description?: T;
   certificateUrl?: T;
   avatar?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experience_select".
+ */
+export interface ExperienceSelect<T extends boolean = true> {
+  companyName?: T;
+  role?: T;
+  startDate?: T;
+  endDate?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }

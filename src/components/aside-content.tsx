@@ -62,12 +62,6 @@ export const AsideContent = () => {
             <FileItem.Title>academica</FileItem.Title>
           </Link>
         </FileItem.Root>
-        <FileItem.Root asChild>
-          <Link href="/certificacoes">
-            <GraduationCap size={16} className="text-dracula-pink" />
-            <FileItem.Title>certificações</FileItem.Title>
-          </Link>
-        </FileItem.Root>
       </FolderContent>
 
       <FolderContent
