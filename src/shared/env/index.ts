@@ -18,6 +18,20 @@ const optionalStringFromEnv = z.preprocess((value) => {
   return trimmed.length > 0 ? trimmed : undefined
 }, z.string().optional())
 
+const deriveCookieDomain = (serverUrl: string) => {
+  try {
+    const hostname = new URL(serverUrl).hostname
+
+    if (hostname.startsWith('www.')) {
+      return `.${hostname.slice(4)}`
+    }
+
+    return hostname.startsWith('.') ? hostname : `.${hostname}`
+  } catch {
+    return undefined
+  }
+}
+
 const envSchema = z.object({
   NODE_ENV: z
     .enum(['development', 'production', 'test'])
@@ -33,4 +47,10 @@ const envSchema = z.object({
 
 const env = envSchema.parse(process.env)
 
-export default env
+const canonicalCookieDomain =
+  env.PAYLOAD_COOKIE_DOMAIN ?? deriveCookieDomain(env.NEXT_PUBLIC_SERVER_URL)
+
+export default {
+  ...env,
+  PAYLOAD_COOKIE_DOMAIN: canonicalCookieDomain,
+}
