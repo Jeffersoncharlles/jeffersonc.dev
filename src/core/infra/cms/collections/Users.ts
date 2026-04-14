@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import env from '@/shared/env'
+import { env } from '@/shared/env'
 
 const isProduction = env.NODE_ENV === 'production'
 
@@ -7,8 +7,7 @@ export const Users: CollectionConfig = {
   slug: 'users',
   auth: {
     cookies: {
-      domain: env.PAYLOAD_COOKIE_DOMAIN,
-      sameSite: env.PAYLOAD_COOKIE_SAMESITE,
+      domain: env.NEXT_PUBLIC_SERVER_URL,
       secure: env.PAYLOAD_COOKIE_SECURE ?? isProduction,
     },
   },

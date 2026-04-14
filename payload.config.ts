@@ -12,7 +12,7 @@ import { Media } from '@/core/infra/cms/collections/Media'
 import { Projects } from '@/core/infra/cms/collections/Projects'
 import { SystemStatus } from '@/core/infra/cms/collections/status'
 import { Users } from '@/core/infra/cms/collections/Users'
-import env from '@/shared/env'
+import { env } from '@/shared/env'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -30,7 +30,7 @@ export default buildConfig({
   },
 
   editor: lexicalEditor(),
-  cookiePrefix: env.PAYLOAD_COOKIE_PREFIX,
+  // cookiePrefix: env.PAYLOAD_COOKIE_PREFIX,
   serverURL: env.NEXT_PUBLIC_SERVER_URL,
   secret: env.PAYLOAD_SECRET,
   db: postgresAdapter({
