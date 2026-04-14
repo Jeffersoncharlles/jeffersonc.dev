@@ -17,6 +17,31 @@ import { env } from '@/shared/env'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const buildAllowedOrigins = (serverURL: string): string[] => {
+  try {
+    const parsed = new URL(serverURL)
+    const hostname = parsed.hostname
+    const isLocalhost = hostname === 'localhost'
+    const isIPv4 = /^\d{1,3}(\.\d{1,3}){3}$/.test(hostname)
+
+    if (isLocalhost || isIPv4) {
+      return [serverURL]
+    }
+
+    const alternateHostname = hostname.startsWith('www.')
+      ? hostname.replace(/^www\./, '')
+      : `www.${hostname}`
+
+    const alternate = `${parsed.protocol}//${alternateHostname}${parsed.port ? `:${parsed.port}` : ''}`
+
+    return Array.from(new Set([serverURL, alternate]))
+  } catch {
+    return [serverURL]
+  }
+}
+
+const allowedOrigins = buildAllowedOrigins(env.NEXT_PUBLIC_SERVER_URL)
+
 export default buildConfig({
   bin: [
     {
@@ -32,8 +57,8 @@ export default buildConfig({
   editor: lexicalEditor(),
   cookiePrefix: env.PAYLOAD_COOKIE_PREFIX,
   serverURL: env.NEXT_PUBLIC_SERVER_URL,
-  cors: [env.NEXT_PUBLIC_SERVER_URL],
-  csrf: [env.NEXT_PUBLIC_SERVER_URL],
+  cors: allowedOrigins,
+  csrf: allowedOrigins,
   secret: env.PAYLOAD_SECRET,
   db: postgresAdapter({
     pool: {
