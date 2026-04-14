@@ -26,7 +26,9 @@ export default buildConfig({
   ],
   admin: {
     user: Users.slug,
+    autoLogin: false,
   },
+
   editor: lexicalEditor(),
   serverURL: env.NEXT_PUBLIC_SERVER_URL,
   secret: env.PAYLOAD_SECRET,
