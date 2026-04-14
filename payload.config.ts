@@ -30,7 +30,7 @@ export default buildConfig({
   },
 
   editor: lexicalEditor(),
-  cookiePrefix: env.PAYLOAD_COOKIE_PREFIX,
+  // cookiePrefix: env.PAYLOAD_COOKIE_PREFIX,
   serverURL: env.NEXT_PUBLIC_SERVER_URL,
   cors: [env.NEXT_PUBLIC_SERVER_URL],
   csrf: [env.NEXT_PUBLIC_SERVER_URL],
