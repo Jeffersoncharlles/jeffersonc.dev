@@ -1,8 +1,17 @@
 import type { CollectionConfig } from 'payload'
+import env from '@/shared/env'
+
+const isProduction = env.NODE_ENV === 'production'
 
 export const Users: CollectionConfig = {
   slug: 'users',
-  auth: true, // Isso habilita os campos de email e password automaticamente
+  auth: {
+    cookies: {
+      domain: env.PAYLOAD_COOKIE_DOMAIN,
+      sameSite: env.PAYLOAD_COOKIE_SAMESITE,
+      secure: env.PAYLOAD_COOKIE_SECURE ?? isProduction,
+    },
+  },
   admin: {
     useAsTitle: 'email',
   },
