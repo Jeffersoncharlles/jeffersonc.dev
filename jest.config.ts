@@ -18,6 +18,7 @@ const config = createJestConfig({
     '/src/components/ui/',
     '/src/lib/',
     '/src/generated/',
+    '/src/tests/mocks/',
     'payload-types.ts',
     'node_modules/(?!(@payloadcms|payload|@drizzle-team)/)',
     '/src/core/infra/cms/collections/',

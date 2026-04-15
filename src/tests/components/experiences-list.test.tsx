@@ -1,6 +1,7 @@
 import { ExperiencesList } from '@/app/(app)/(vscode)/(rotas)/experiencia/_components/experiences-list'
 import { makeGetExperience } from '@/core/infra/services/experience-services'
 import { render, screen } from '@/shared/utils/test-utils'
+import { mockExperienceData } from '../mocks/mockExperienceData'
 
 const mockMakeGetExperience = jest.mocked(makeGetExperience)
 
@@ -9,25 +10,6 @@ jest.mock('@/core/infra/services/experience-services', () => ({
     execute: jest.fn(),
   })),
 }))
-
-const mockExperienceData = [
-  {
-    id: '1',
-    companyName: 'RBS TRANSPORTES LTDA',
-    role: 'Engenheiro de Software Full-Cycle',
-    startDate: '2018-01-20',
-    endDate: '2026-02-15',
-    description: 'Descrição da experiência.',
-  },
-  {
-    id: '2',
-    companyName: 'JefferDeveloper',
-    role: 'Desenvolvedor Full Stack',
-    startDate: '2020-08-01',
-    endDate: null,
-    description: 'Descrição da experiência.',
-  },
-]
 
 const makeSut = async () => {
   mockMakeGetExperience.mockReturnValue({

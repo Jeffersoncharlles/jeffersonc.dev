@@ -1,6 +1,7 @@
 import { AcademicList } from '@/app/(app)/(vscode)/(rotas)/academica/_components/academic-list'
 import { makeGetAcademic } from '@/core/infra/services/academica-services'
 import { render, screen } from '@/shared/utils/test-utils'
+import { mockAcademicData } from '../mocks/mockAcademicData'
 
 const mockMakeGetAcademic = jest.mocked(makeGetAcademic)
 
@@ -9,63 +10,6 @@ jest.mock('@/core/infra/services/academica-services', () => ({
     execute: jest.fn(),
   })),
 }))
-
-const mockAcademicData = [
-  {
-    id: '1',
-    name: 'Bacharelado em Ciência da Computação',
-    institution: 'Universidade XYZ',
-    type: 'graduacao',
-    description: 'Descrição do curso de graduação.',
-    startDate: '2015-01-01',
-    endDate: '2018-12-31',
-  },
-  {
-    id: '2',
-    name: 'Mestrado em Inteligência Artificial',
-    institution: 'Universidade ABC',
-    type: 'pos_graduacao',
-    description: 'Descrição do curso de pós-graduação.',
-    startDate: '2019-01-01',
-    endDate: null,
-  },
-  {
-    id: '3',
-    name: 'JS Expert',
-    institution: 'Erick Wendel',
-    type: 'certificacao',
-    description: '- Node.js Performance\n- Design Patterns\n- Testing',
-    startDate: '2023-01-01',
-    endDate: '2023-06-01',
-  },
-  {
-    id: '4',
-    name: 'Ignite React',
-    institution: 'Rocketseat',
-    type: 'certificacao',
-    description: '* Next.js\n* Tailwind',
-    startDate: '2022-01-01',
-    endDate: '2022-12-01',
-  },
-  {
-    id: '5',
-    name: 'Certificado Sem Instituição',
-    institution: null,
-    type: 'certificacao',
-    description: null,
-    startDate: '2024-01-01',
-    endDate: null,
-  },
-  {
-    id: '6',
-    name: 'Clean Code Especialista',
-    institution: 'Erick Wendel',
-    type: 'certificacao',
-    description: '- S.O.L.I.D\n- Refactoring',
-    startDate: '2024-01-01',
-    endDate: null,
-  },
-]
 
 const makeSut = async () => {
   mockMakeGetAcademic.mockReturnValue({
