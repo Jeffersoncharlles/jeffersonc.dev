@@ -7,16 +7,16 @@ export const Users: CollectionConfig = {
   slug: 'users',
   auth: {
     cookies: {
-      // domain: env.PAYLOAD_COOKIE_DOMAIN,
       sameSite: env.PAYLOAD_COOKIE_SAMESITE,
       secure: env.PAYLOAD_COOKIE_SECURE ?? isProduction,
     },
   },
   admin: {
-    useAsTitle: 'email',
+    useAsTitle: 'name', // Using name instead of email for better UX
+    defaultColumns: ['name', 'email', 'role'],
   },
   access: {
-    // Por padrão, apenas usuários logados podem ler/criar outros usuários
+    // Only admins can read/create other users, unless it's themselves
     read: ({ req: { user } }) => {
       if (user?.role === 'admin') return true
       if (user) return { id: { equals: user.id } }
@@ -38,7 +38,7 @@ export const Users: CollectionConfig = {
         { label: 'Editor', value: 'editor' },
       ],
       required: true,
-      saveToJWT: true, // Facilita checar permissões no front-end depois
+      saveToJWT: true,
     },
   ],
 }
