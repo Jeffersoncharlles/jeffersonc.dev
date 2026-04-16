@@ -1,4 +1,4 @@
-import { GetInfrastructureUseCase } from '@/core/application/use-cases/get-all-infrastruture-use-case'
+import { GetInfrastructureUseCase } from '@/core/application/use-cases/get-all-infrastructure-use-case'
 import { PayloadInfrastructuresRepository } from '../cms/repositories/payload-Infrastructure-repository'
 
 export function makeGetInfrastructure() {

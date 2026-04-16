@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import { InfrastructureList } from './_components/infrastrucutre-list'
+import { InfrastructureList } from './_components/infrastructure-list'
 import { SkeletonInfrastructureList } from './_components/skeleton-infrastructure-list'
 
 const SetupPage = () => {

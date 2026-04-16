@@ -1,12 +1,13 @@
 import config from '@payload-config'
 import { getPayload } from 'payload'
+import type { InfrastructureRepository } from '@/core/application/repositories/infrastructure-repository'
 import {
   type InfrastructureEntity,
   infrastructureSchema,
 } from '@/core/domain/entities/Infrastructure'
 
 export class PayloadInfrastructuresRepository
-  implements PayloadInfrastructuresRepository
+  implements InfrastructureRepository
 {
   async findAllInfra(): Promise<InfrastructureEntity[]> {
     const payload = await getPayload({ config })
