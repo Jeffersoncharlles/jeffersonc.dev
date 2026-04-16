@@ -15,7 +15,7 @@ export default function ReadmeLayout({
 
       {/* content */}
       <div className="w-full flex-1 min-h-0 overflow-y-auto border">
-        <div className="w-full max-w-4xl mx-auto flex min-h-full flex-col gap-6 md:gap-8 pb-20 px-4 md:px-8">
+        <div className="w-full max-w-4xl mx-auto flex min-h-full flex-col gap-6 md:gap-8 pb-15 px-4 md:px-8">
           {children}
         </div>
       </div>

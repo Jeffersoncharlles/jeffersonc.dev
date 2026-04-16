@@ -10,7 +10,11 @@ export class PayloadInfrastructuresRepository
 {
   async findAllInfra(): Promise<InfrastructureEntity[]> {
     const payload = await getPayload({ config })
-    const { docs } = await payload.find({ collection: 'infrastructure' })
+    const { docs } = await payload.find({
+      collection: 'infrastructure',
+      limit: 100,
+      pagination: false,
+    })
 
     return docs.map((doc) => {
       const result = infrastructureSchema.safeParse({

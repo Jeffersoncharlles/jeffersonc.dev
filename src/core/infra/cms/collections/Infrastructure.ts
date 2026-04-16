@@ -18,7 +18,7 @@ export const Infrastructure: CollectionConfig = {
     {
       name: 'iconName',
       type: 'text',
-      admin: { description: 'Nome do ícone Lucide' },
+      admin: { description: 'Nome do ícone skillicons' },
     },
     { name: 'description', type: 'textarea' },
   ],
