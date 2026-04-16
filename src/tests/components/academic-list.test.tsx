@@ -1,6 +1,7 @@
 import { AcademicList } from '@/app/(app)/(vscode)/(rotas)/academica/_components/academic-list'
 import { makeGetAcademic } from '@/core/infra/services/academica-services'
 import { render, screen } from '@/shared/utils/test-utils'
+import { mockAcademicData } from '../mocks/mockAcademicData'
 
 const mockMakeGetAcademic = jest.mocked(makeGetAcademic)
 
@@ -9,27 +10,6 @@ jest.mock('@/core/infra/services/academica-services', () => ({
     execute: jest.fn(),
   })),
 }))
-
-const mockAcademicData = [
-  {
-    id: '1',
-    name: 'Bacharelado em Ciência da Computação',
-    institution: 'Universidade XYZ',
-    type: 'graduacao',
-    description: 'Descrição do curso de graduação.',
-    startDate: '2015-01-01',
-    endDate: '2018-12-31',
-  },
-  {
-    id: '2',
-    name: 'Mestrado em Inteligência Artificial',
-    institution: 'Universidade ABC',
-    type: 'pos_graduacao',
-    description: 'Descrição do curso de pós-graduação.',
-    startDate: '2019-01-01',
-    endDate: null,
-  },
-]
 
 const makeSut = async () => {
   mockMakeGetAcademic.mockReturnValue({
@@ -75,5 +55,42 @@ describe('AcademicList', () => {
     expect(item2Institution).toBeInTheDocument()
     expect(item2Type).toBeInTheDocument()
     expect(item2Description).toBeInTheDocument()
+  })
+
+  it('should render certificate grouped by institution and parsed topics', async () => {
+    await makeSut()
+
+    const jsExpertInstitution = await screen.findByText('Erick Wendel')
+    const jsExpertTopics = await screen.findByText('Node.js Performance')
+    const igniteReactInstitution = await screen.findByText('Rocketseat')
+    const igniteReactTopics = await screen.findByText('Next.js')
+
+    expect(jsExpertInstitution).toBeInTheDocument()
+    expect(jsExpertTopics).toBeInTheDocument()
+    expect(igniteReactInstitution).toBeInTheDocument()
+    expect(igniteReactTopics).toBeInTheDocument()
+
+    const jsExpertTopicsList = screen.getAllByRole('listitem')
+    expect(jsExpertTopicsList.length).toBeGreaterThan(0)
+  })
+  it('should handle items without description gracefully', async () => {
+    await makeSut()
+
+    const certificateName = await screen.findByText(
+      'Certificado Sem Instituição',
+    )
+
+    expect(certificateName).toBeInTheDocument()
+  })
+
+  it('should group multiple certifications from the same institution', async () => {
+    await makeSut()
+    const institutionHeader = screen.getByText('Erick Wendel')
+    expect(institutionHeader).toBeInTheDocument()
+
+    expect(await screen.findByText('JS Expert')).toBeInTheDocument()
+    expect(
+      await screen.findByText('Clean Code Especialista'),
+    ).toBeInTheDocument()
   })
 })

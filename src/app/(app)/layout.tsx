@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   },
   description:
     'My Portfolio and Blog built with Next.js, Payload CMS, and Tailwind CSS.',
+  icons: {
+    icon: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({

@@ -9,6 +9,7 @@ const config = createJestConfig({
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^@payload-config$': '<rootDir>/src/tests/mocks/payload-config.ts',
   },
   coveragePathIgnorePatterns: [
     '/node_modules/',
@@ -17,7 +18,11 @@ const config = createJestConfig({
     '/src/components/ui/',
     '/src/lib/',
     '/src/generated/',
+    '/src/tests/mocks/',
     'payload-types.ts',
+    'node_modules/(?!(@payloadcms|payload|@drizzle-team)/)',
+    '/src/core/infra/cms/collections/',
+    'payload.config.ts',
   ],
   testPathIgnorePatterns: [
     '<rootDir>/node_modules/',

@@ -7,8 +7,13 @@ const envSchema = z.object({
   DATABASE_URL: z.string(),
   PAYLOAD_SECRET: z.string(),
   NEXT_PUBLIC_SERVER_URL: z.string().url('Invalid server URL'),
+  PAYLOAD_COOKIE_DOMAIN: z.string().optional(),
+  PAYLOAD_COOKIE_SAMESITE: z.enum(['Lax', 'Strict', 'None']).default('Lax'),
+  PAYLOAD_COOKIE_SECURE: z
+    .enum(['true', 'false'])
+    .transform((value) => value === 'true')
+    .optional(),
+  PAYLOAD_COOKIE_PREFIX: z.string().default('payload'),
 })
 
-const env = envSchema.parse(process.env)
-
-export default env
+export const env = envSchema.parse(process.env)

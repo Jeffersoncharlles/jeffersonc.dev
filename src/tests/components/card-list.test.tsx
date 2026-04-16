@@ -2,6 +2,7 @@ import { CardList } from '@/app/(app)/(vscode)/_components/card-list'
 import type { HomeCardEntity } from '@/core/domain/entities/home-card'
 import { makeGetHomeCards } from '@/core/infra/services/home-service'
 import { render, screen } from '@/shared/utils/test-utils'
+import { mockCards } from '../mocks/mockCards'
 
 const mockMakeGetHomeCards = jest.mocked(makeGetHomeCards)
 
@@ -10,29 +11,6 @@ jest.mock('@/core/infra/services/home-service', () => ({
     execute: jest.fn(),
   })),
 }))
-
-const mockCards: HomeCardEntity[] = [
-  {
-    id: '550e8400-e29b-41d4-a716-446655440001',
-    title: 'Card 1',
-    badge: 'React',
-    description: 'Test card description 1',
-    icon: 'code',
-    color: 'blue',
-    tags: ['tag1', 'tag2', 'tag3'],
-    order: 1,
-  },
-  {
-    id: '550e8400-e29b-41d4-a716-446655440002',
-    title: 'Card 2',
-    badge: 'Next.js',
-    description: 'Test card description 2',
-    icon: 'code',
-    color: 'purple',
-    tags: ['tag4', 'tag5'],
-    order: 2,
-  },
-]
 
 interface MakeSutOptions {
   cards?: HomeCardEntity[] | null
