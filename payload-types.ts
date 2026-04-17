@@ -59,555 +59,549 @@ export type SupportedTimezones =
   | 'Pacific/Guam'
   | 'Pacific/Noumea'
   | 'Pacific/Auckland'
-  | 'Pacific/Fiji'
+  | 'Pacific/Fiji';
 
 export interface Config {
   auth: {
-    users: UserAuthOperations
-  }
-  blocks: {}
+    users: UserAuthOperations;
+  };
+  blocks: {};
   collections: {
-    users: User
-    'home-cards': HomeCard
-    projects: Project
-    infrastructure: Infrastructure
-    education: Education
-    experience: Experience
-    blog: Blog
-    media: Media
-    'payload-kv': PayloadKv
-    'payload-locked-documents': PayloadLockedDocument
-    'payload-preferences': PayloadPreference
-    'payload-migrations': PayloadMigration
-  }
-  collectionsJoins: {}
+    users: User;
+    'home-cards': HomeCard;
+    projects: Project;
+    infrastructure: Infrastructure;
+    education: Education;
+    experience: Experience;
+    blog: Blog;
+    media: Media;
+    'payload-kv': PayloadKv;
+    'payload-locked-documents': PayloadLockedDocument;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
+  };
+  collectionsJoins: {};
   collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>
-    'home-cards': HomeCardsSelect<false> | HomeCardsSelect<true>
-    projects: ProjectsSelect<false> | ProjectsSelect<true>
-    infrastructure: InfrastructureSelect<false> | InfrastructureSelect<true>
-    education: EducationSelect<false> | EducationSelect<true>
-    experience: ExperienceSelect<false> | ExperienceSelect<true>
-    blog: BlogSelect<false> | BlogSelect<true>
-    media: MediaSelect<false> | MediaSelect<true>
-    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>
-    'payload-locked-documents':
-      | PayloadLockedDocumentsSelect<false>
-      | PayloadLockedDocumentsSelect<true>
-    'payload-preferences':
-      | PayloadPreferencesSelect<false>
-      | PayloadPreferencesSelect<true>
-    'payload-migrations':
-      | PayloadMigrationsSelect<false>
-      | PayloadMigrationsSelect<true>
-  }
+    users: UsersSelect<false> | UsersSelect<true>;
+    'home-cards': HomeCardsSelect<false> | HomeCardsSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    infrastructure: InfrastructureSelect<false> | InfrastructureSelect<true>;
+    education: EducationSelect<false> | EducationSelect<true>;
+    experience: ExperienceSelect<false> | ExperienceSelect<true>;
+    blog: BlogSelect<false> | BlogSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+  };
   db: {
-    defaultIDType: string
-  }
-  fallbackLocale: null
+    defaultIDType: string;
+  };
+  fallbackLocale: null;
   globals: {
-    'system-status': SystemStatus
-  }
+    'system-status': SystemStatus;
+  };
   globalsSelect: {
-    'system-status': SystemStatusSelect<false> | SystemStatusSelect<true>
-  }
-  locale: null
+    'system-status': SystemStatusSelect<false> | SystemStatusSelect<true>;
+  };
+  locale: null;
   widgets: {
-    collections: CollectionsWidget
-  }
-  user: User
+    collections: CollectionsWidget;
+  };
+  user: User;
   jobs: {
-    tasks: unknown
-    workflows: unknown
-  }
+    tasks: unknown;
+    workflows: unknown;
+  };
 }
 export interface UserAuthOperations {
   forgotPassword: {
-    email: string
-    password: string
-  }
+    email: string;
+    password: string;
+  };
   login: {
-    email: string
-    password: string
-  }
+    email: string;
+    password: string;
+  };
   registerFirstUser: {
-    email: string
-    password: string
-  }
+    email: string;
+    password: string;
+  };
   unlock: {
-    email: string
-    password: string
-  }
+    email: string;
+    password: string;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
-  id: string
-  name: string
-  role: 'admin' | 'editor'
-  updatedAt: string
-  createdAt: string
-  email: string
-  resetPasswordToken?: string | null
-  resetPasswordExpiration?: string | null
-  salt?: string | null
-  hash?: string | null
-  loginAttempts?: number | null
-  lockUntil?: string | null
+  id: string;
+  name: string;
+  role: 'admin' | 'editor';
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
   sessions?:
     | {
-        id: string
-        createdAt?: string | null
-        expiresAt: string
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
       }[]
-    | null
-  password?: string | null
-  collection: 'users'
+    | null;
+  password?: string | null;
+  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home-cards".
  */
 export interface HomeCard {
-  id: string
-  title: string
+  id: string;
+  title: string;
   /**
    * Ex: "Frontend", "Backend", "Mobile"
    */
-  badgeLabel?: string | null
-  description: string
+  badgeLabel?: string | null;
+  description: string;
   /**
    * Use o nome do ícone do Lucide ou da sua biblioteca (ex: "code", "terminal", "database")
    */
-  iconName: string
-  colorsCards?: ('blue' | 'purple' | 'green' | 'orange') | null
+  iconName: string;
+  colorsCards?: ('blue' | 'purple' | 'green' | 'orange') | null;
   footerTags?:
     | {
-        tag?: string | null
-        id?: string | null
+        tag?: string | null;
+        id?: string | null;
       }[]
-    | null
-  order?: number | null
-  updatedAt: string
-  createdAt: string
+    | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
 export interface Project {
-  id: string
-  title: string
-  type: 'projects' | 'demos'
-  githubUrl?: string | null
-  liveUrl?: string | null
-  technologies?: (string | Infrastructure)[] | null
+  id: string;
+  title: string;
+  type: 'projects' | 'demos';
+  githubUrl?: string | null;
+  liveUrl?: string | null;
+  technologies?: (string | Infrastructure)[] | null;
   content?: {
     root: {
-      type: string
+      type: string;
       children: {
-        type: any
-        version: number
-        [k: string]: unknown
-      }[]
-      direction: ('ltr' | 'rtl') | null
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | ''
-      indent: number
-      version: number
-    }
-    [k: string]: unknown
-  } | null
-  updatedAt: string
-  createdAt: string
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "infrastructure".
  */
 export interface Infrastructure {
-  id: string
-  name: string
-  category: 'stack' | 'setup' | 'integrations'
+  id: string;
+  name: string;
+  category: 'stack' | 'setup' | 'integrations';
   /**
    * Nome do ícone skillicons
    */
-  iconName?: string | null
-  description?: string | null
-  updatedAt: string
-  createdAt: string
+  iconName?: string | null;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "education".
  */
 export interface Education {
-  id: string
-  name: string
-  institution: string
-  type: 'graduacao' | 'pos_graduacao' | 'certificacao'
-  degreeType?: ('bacharelado' | 'licenciatura' | 'tecnologo') | null
-  startDate?: string | null
-  endDate: string
-  description?: string | null
-  certificateUrl?: string | null
+  id: string;
+  name: string;
+  institution: string;
+  type: 'graduacao' | 'pos_graduacao' | 'certificacao';
+  degreeType?: ('bacharelado' | 'licenciatura' | 'tecnologo') | null;
+  startDate?: string | null;
+  endDate: string;
+  description?: string | null;
+  certificateUrl?: string | null;
   /**
    * Opcional. Exibido como imagem de destaque da formação.
    */
-  avatar?: (string | null) | Media
-  updatedAt: string
-  createdAt: string
+  avatar?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
-  id: string
-  alt: string
-  updatedAt: string
-  createdAt: string
-  url?: string | null
-  thumbnailURL?: string | null
-  filename?: string | null
-  mimeType?: string | null
-  filesize?: number | null
-  width?: number | null
-  height?: number | null
-  focalX?: number | null
-  focalY?: number | null
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "experience".
  */
 export interface Experience {
-  id: string
-  companyName: string
-  role: string
-  startDate: string
+  id: string;
+  companyName: string;
+  role: string;
+  startDate: string;
   /**
    * Opcional para experiências em andamento.
    */
-  endDate?: string | null
+  endDate?: string | null;
   /**
    * Opcional. Aceita conteúdo em markdown.
    */
-  description?: string | null
-  updatedAt: string
-  createdAt: string
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "blog".
  */
 export interface Blog {
-  id: string
-  title: string
-  slug?: string | null
-  category: 'frontend' | 'backend' | 'career'
-  description?: string | null
-  markdown: string
-  publishedAt: string
-  updatedAt: string
-  createdAt: string
+  id: string;
+  title: string;
+  slug?: string | null;
+  category: 'frontend' | 'backend' | 'career';
+  description?: string | null;
+  markdown: string;
+  publishedAt: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
-  id: string
-  key: string
+  id: string;
+  key: string;
   data:
     | {
-        [k: string]: unknown
+        [k: string]: unknown;
       }
     | unknown[]
     | string
     | number
     | boolean
-    | null
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string
+  id: string;
   document?:
     | ({
-        relationTo: 'users'
-        value: string | User
+        relationTo: 'users';
+        value: string | User;
       } | null)
     | ({
-        relationTo: 'home-cards'
-        value: string | HomeCard
+        relationTo: 'home-cards';
+        value: string | HomeCard;
       } | null)
     | ({
-        relationTo: 'projects'
-        value: string | Project
+        relationTo: 'projects';
+        value: string | Project;
       } | null)
     | ({
-        relationTo: 'infrastructure'
-        value: string | Infrastructure
+        relationTo: 'infrastructure';
+        value: string | Infrastructure;
       } | null)
     | ({
-        relationTo: 'education'
-        value: string | Education
+        relationTo: 'education';
+        value: string | Education;
       } | null)
     | ({
-        relationTo: 'experience'
-        value: string | Experience
+        relationTo: 'experience';
+        value: string | Experience;
       } | null)
     | ({
-        relationTo: 'blog'
-        value: string | Blog
+        relationTo: 'blog';
+        value: string | Blog;
       } | null)
     | ({
-        relationTo: 'media'
-        value: string | Media
-      } | null)
-  globalSlug?: string | null
+        relationTo: 'media';
+        value: string | Media;
+      } | null);
+  globalSlug?: string | null;
   user: {
-    relationTo: 'users'
-    value: string | User
-  }
-  updatedAt: string
-  createdAt: string
+    relationTo: 'users';
+    value: string | User;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string
+  id: string;
   user: {
-    relationTo: 'users'
-    value: string | User
-  }
-  key?: string | null
+    relationTo: 'users';
+    value: string | User;
+  };
+  key?: string | null;
   value?:
     | {
-        [k: string]: unknown
+        [k: string]: unknown;
       }
     | unknown[]
     | string
     | number
     | boolean
-    | null
-  updatedAt: string
-  createdAt: string
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string
-  name?: string | null
-  batch?: number | null
-  updatedAt: string
-  createdAt: string
+  id: string;
+  name?: string | null;
+  batch?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  name?: T
-  role?: T
-  updatedAt?: T
-  createdAt?: T
-  email?: T
-  resetPasswordToken?: T
-  resetPasswordExpiration?: T
-  salt?: T
-  hash?: T
-  loginAttempts?: T
-  lockUntil?: T
+  name?: T;
+  role?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
   sessions?:
     | T
     | {
-        id?: T
-        createdAt?: T
-        expiresAt?: T
-      }
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home-cards_select".
  */
 export interface HomeCardsSelect<T extends boolean = true> {
-  title?: T
-  badgeLabel?: T
-  description?: T
-  iconName?: T
-  colorsCards?: T
+  title?: T;
+  badgeLabel?: T;
+  description?: T;
+  iconName?: T;
+  colorsCards?: T;
   footerTags?:
     | T
     | {
-        tag?: T
-        id?: T
-      }
-  order?: T
-  updatedAt?: T
-  createdAt?: T
+        tag?: T;
+        id?: T;
+      };
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects_select".
  */
 export interface ProjectsSelect<T extends boolean = true> {
-  title?: T
-  type?: T
-  githubUrl?: T
-  liveUrl?: T
-  technologies?: T
-  content?: T
-  updatedAt?: T
-  createdAt?: T
+  title?: T;
+  type?: T;
+  githubUrl?: T;
+  liveUrl?: T;
+  technologies?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "infrastructure_select".
  */
 export interface InfrastructureSelect<T extends boolean = true> {
-  name?: T
-  category?: T
-  iconName?: T
-  description?: T
-  updatedAt?: T
-  createdAt?: T
+  name?: T;
+  category?: T;
+  iconName?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "education_select".
  */
 export interface EducationSelect<T extends boolean = true> {
-  name?: T
-  institution?: T
-  type?: T
-  degreeType?: T
-  startDate?: T
-  endDate?: T
-  description?: T
-  certificateUrl?: T
-  avatar?: T
-  updatedAt?: T
-  createdAt?: T
+  name?: T;
+  institution?: T;
+  type?: T;
+  degreeType?: T;
+  startDate?: T;
+  endDate?: T;
+  description?: T;
+  certificateUrl?: T;
+  avatar?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "experience_select".
  */
 export interface ExperienceSelect<T extends boolean = true> {
-  companyName?: T
-  role?: T
-  startDate?: T
-  endDate?: T
-  description?: T
-  updatedAt?: T
-  createdAt?: T
+  companyName?: T;
+  role?: T;
+  startDate?: T;
+  endDate?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "blog_select".
  */
 export interface BlogSelect<T extends boolean = true> {
-  title?: T
-  slug?: T
-  category?: T
-  description?: T
-  markdown?: T
-  publishedAt?: T
-  updatedAt?: T
-  createdAt?: T
+  title?: T;
+  slug?: T;
+  category?: T;
+  description?: T;
+  markdown?: T;
+  publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
-  alt?: T
-  updatedAt?: T
-  createdAt?: T
-  url?: T
-  thumbnailURL?: T
-  filename?: T
-  mimeType?: T
-  filesize?: T
-  width?: T
-  height?: T
-  focalX?: T
-  focalY?: T
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
-  key?: T
-  data?: T
+  key?: T;
+  data?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
-  document?: T
-  globalSlug?: T
-  user?: T
-  updatedAt?: T
-  createdAt?: T
+  document?: T;
+  globalSlug?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences_select".
  */
 export interface PayloadPreferencesSelect<T extends boolean = true> {
-  user?: T
-  key?: T
-  value?: T
-  updatedAt?: T
-  createdAt?: T
+  user?: T;
+  key?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations_select".
  */
 export interface PayloadMigrationsSelect<T extends boolean = true> {
-  name?: T
-  batch?: T
-  updatedAt?: T
-  createdAt?: T
+  name?: T;
+  batch?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "system-status".
  */
 export interface SystemStatus {
-  id: string
-  logMessage: string
-  currentFocus?: string | null
-  isAvailable?: boolean | null
-  lastPing?: string | null
-  updatedAt?: string | null
-  createdAt?: string | null
+  id: string;
+  logMessage: string;
+  currentFocus?: string | null;
+  isAvailable?: boolean | null;
+  lastPing?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "system-status_select".
  */
 export interface SystemStatusSelect<T extends boolean = true> {
-  logMessage?: T
-  currentFocus?: T
-  isAvailable?: T
-  lastPing?: T
-  updatedAt?: T
-  createdAt?: T
-  globalType?: T
+  logMessage?: T;
+  currentFocus?: T;
+  isAvailable?: T;
+  lastPing?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -615,17 +609,18 @@ export interface SystemStatusSelect<T extends boolean = true> {
  */
 export interface CollectionsWidget {
   data?: {
-    [k: string]: unknown
-  }
-  width: 'full'
+    [k: string]: unknown;
+  };
+  width: 'full';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
-  [k: string]: unknown
+  [k: string]: unknown;
 }
+
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}
