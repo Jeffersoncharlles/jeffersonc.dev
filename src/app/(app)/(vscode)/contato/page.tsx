@@ -1,12 +1,12 @@
 import { Mail, Send, User } from 'lucide-react'
 import Breadcrumbs from '@/components/breadcrumbs'
-import TabsBar from '@/components/tabs-bar'
+import TabsBarWrapper from '@/components/tabs-bar-wrapper'
 import { Button } from '@/components/UI/button'
 
 const ContactPage = () => {
   return (
     <div className="relative size-full overflow-hidden flex flex-col bg-background">
-      <TabsBar />
+      <TabsBarWrapper />
       <Breadcrumbs />
 
       {/* Email UI */}

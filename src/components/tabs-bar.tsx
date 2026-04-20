@@ -12,7 +12,6 @@ const TabsBar = () => {
   const searchParams = useSearchParams()
   const [lastReadmePath, setLastReadmePath] = useState('/')
 
-  // Persist last README path
   useEffect(() => {
     if (
       pathname !== '/contato' &&
@@ -24,7 +23,6 @@ const TabsBar = () => {
     }
   }, [pathname])
 
-  // Initialize from sessionStorage
   useEffect(() => {
     const saved = sessionStorage.getItem('lastReadmePath')
     if (saved) setLastReadmePath(saved)

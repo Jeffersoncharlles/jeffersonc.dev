@@ -2,12 +2,12 @@ import { Suspense } from 'react'
 import { CardList } from '@/app/(app)/(vscode)/_components/card-list'
 import { CardListSkeleton } from '@/app/(app)/(vscode)/_components/card-list-skeleton'
 import Breadcrumbs from '@/components/breadcrumbs'
-import TabsBar from '@/components/tabs-bar'
+import TabsBarWrapper from '@/components/tabs-bar-wrapper'
 
 export default function VSCodeMainEditorArea() {
   return (
     <div className="relative   overflow-hidden flex flex-col bg-background ">
-      <TabsBar />
+      <TabsBarWrapper />
       <Breadcrumbs />
 
       {/* Content Area */}

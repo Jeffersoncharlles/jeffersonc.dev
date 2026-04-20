@@ -43,3 +43,5 @@ CLAUDE.md
 AGENTS.md
 GEMINI.md
 seed-db-real.ts
+
+payload-types.ts

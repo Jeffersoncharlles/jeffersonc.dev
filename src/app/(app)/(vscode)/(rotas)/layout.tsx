@@ -1,5 +1,5 @@
 import Breadcrumbs from '@/components/breadcrumbs'
-import TabsBar from '@/components/tabs-bar'
+import TabsBarWrapper from '@/components/tabs-bar-wrapper'
 import { TooltipProvider } from '@/components/UI/tooltop'
 
 export default function ReadmeLayout({
@@ -9,7 +9,7 @@ export default function ReadmeLayout({
 }>) {
   return (
     <section className="relative h-full flex flex-col bg-background overflow-hidden">
-      <TabsBar />
+      <TabsBarWrapper />
       <Breadcrumbs />
       {/* content */}
       <div className="w-full flex-1 min-h-218 overflow-y-auto border z-20">
