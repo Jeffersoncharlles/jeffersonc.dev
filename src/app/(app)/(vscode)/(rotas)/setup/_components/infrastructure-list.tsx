@@ -52,7 +52,7 @@ export const InfrastructureList = async () => {
                     key={item.id}
                     className="flex flex-col items-center justify-center gap-2"
                   >
-                    {/** biome-ignore lint/performance/noImgElement: <explanation> */}
+                    {/** biome-ignore lint/performance/noImgElement: icons list not required Image optimization */}
                     <img
                       src={getIconUrl(cleanSlug)}
                       alt={item.name}
@@ -97,7 +97,7 @@ export const InfrastructureList = async () => {
                     key={item.id}
                     className="flex flex-col items-center justify-center gap-2"
                   >
-                    {/** biome-ignore lint/performance/noImgElement: <explanation> */}
+                    {/** biome-ignore lint/performance/noImgElement: icons list not required Image optimization */}
                     <img
                       src={getIconUrl(cleanSlug)}
                       alt={item.name}

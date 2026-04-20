@@ -26,5 +26,5 @@ export const projectSchema = z.object({
 })
 
 export type ProjectEntity = z.infer<typeof projectSchema> & {
-  content?: Record<string, any> | null
+  content?: Record<string, unknown> | null
 }
