@@ -36,7 +36,7 @@ export default function VSCodeLayout({
           />
         )}
 
-        <main className="flex-1  overflow-auto relative z-10 lg:z-0 ">
+        <main className="flex flex-col flex-1 h-full overflow-auto relative z-10 lg:z-0 ">
           {children}
         </main>
       </div>

@@ -1,18 +1,24 @@
 'use client'
 
-import { FileText, RecycleIcon } from 'lucide-react'
-import { usePathname, useRouter } from 'next/navigation'
+import { Bookmark, FileText, RecycleIcon, X } from 'lucide-react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import type React from 'react'
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const TabsBar = () => {
   const pathname = usePathname()
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [lastReadmePath, setLastReadmePath] = useState('/')
 
   // Persist last README path
   useEffect(() => {
-    if (pathname !== '/contato' && !pathname.startsWith('/blog')) {
+    if (
+      pathname !== '/contato' &&
+      !pathname.startsWith('/blog') &&
+      !pathname.startsWith('/projects/')
+    ) {
       setLastReadmePath(pathname)
       sessionStorage.setItem('lastReadmePath', pathname)
     }
@@ -25,7 +31,11 @@ const TabsBar = () => {
   }, [])
 
   const isContactActive = pathname === '/contato'
-  const isReadmeActive = !isContactActive && !pathname.startsWith('/blog')
+  const isProjectActive = pathname.startsWith('/projects/')
+  const isReadmeActive =
+    !isContactActive && !isProjectActive && !pathname.startsWith('/blog')
+
+  const projectTitle = searchParams.get('title') || 'projeto.md'
 
   const handleReadmeClick = () => {
     router.push(lastReadmePath)
@@ -33,6 +43,11 @@ const TabsBar = () => {
 
   const handleContactClick = () => {
     router.push('/contato')
+  }
+
+  const handleCloseProject = (e: React.MouseEvent | React.KeyboardEvent) => {
+    e.stopPropagation()
+    router.push('/projects')
   }
 
   return (
@@ -67,6 +82,29 @@ const TabsBar = () => {
           </div>
         </div>
       </button>
+
+      {/* Dynamic Project Tab */}
+      {isProjectActive && (
+        <div className="flex gap-[8px] h-full items-center px-[20px] relative">
+          <div className="h-[12px] w-[12px] relative shrink-0 flex items-center justify-center">
+            <Bookmark size={12} className="text-dracula-pink" />
+          </div>
+          <div className="flex items-center gap-2">
+            <p className="font-['Inter:Medium',sans-serif] text-[11px] text-[#f8f8f2] font-medium">
+              {projectTitle.toLowerCase().replace(/\s+/g, '-')}.md
+            </p>
+            <button
+              type="button"
+              onClick={handleCloseProject}
+              onKeyDown={(e) => e.key === 'Enter' && handleCloseProject(e)}
+              className="hover:bg-dracula-pink/20 rounded-sm p-0.5 transition-colors outline-none focus-visible:ring-1 focus-visible:ring-dracula-pink"
+              aria-label="Close project tab"
+            >
+              <X size={10} className="text-dracula-pink" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* contato.tsx Tab */}
       <button

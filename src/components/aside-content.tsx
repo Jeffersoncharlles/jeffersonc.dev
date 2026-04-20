@@ -5,12 +5,10 @@ import {
   Code,
   Cpu,
   Database,
-  GraduationCap,
   Laptop,
   Link as LinkIcon,
   Mail,
   Network,
-  PlayCircle,
   QrCode,
   Terminal,
 } from 'lucide-react'
@@ -90,12 +88,6 @@ export const AsideContent = () => {
           <Link href="/projects">
             <Code size={16} className="text-dracula-pink" />
             <FileItem.Title>projects</FileItem.Title>
-          </Link>
-        </FileItem.Root>
-        <FileItem.Root asChild>
-          <Link href="/demos">
-            <PlayCircle size={16} className="text-dracula-cyan" />
-            <FileItem.Title>demos</FileItem.Title>
           </Link>
         </FileItem.Root>
       </FolderContent>

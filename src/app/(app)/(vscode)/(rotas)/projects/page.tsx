@@ -11,7 +11,7 @@ const ProjectsPage = () => {
           </h1>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 pb-4 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2  gap-4 md:gap-8 pb-4 w-full">
         <Suspense>
           <ProjectsList />
         </Suspense>

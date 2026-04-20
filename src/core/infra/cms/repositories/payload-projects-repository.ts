@@ -45,4 +45,40 @@ export class PayloadProjectsRepository implements ProjectsRepository {
       return result.data
     })
   }
+
+  async findProjectById(id: string): Promise<ProjectEntity | null> {
+    const payload = await getPayload({ config })
+    const doc = await payload.findByID({
+      collection: 'projects',
+      id,
+    })
+
+    if (!doc) return null
+
+    const isPopulated = (
+      tech: string | Infrastructure,
+    ): tech is Infrastructure => {
+      return typeof tech === 'object' && tech !== null && 'name' in tech
+    }
+
+    const result = projectSchema.safeParse({
+      id: doc.id,
+      title: doc.title,
+      type: doc.type,
+      githubUrl: doc.githubUrl,
+      liveUrl: doc.liveUrl,
+      technologies:
+        doc.technologies?.map((t) => (isPopulated(t) ? t.name : t)) ?? [],
+      content: doc.content,
+      updatedAt: doc.updatedAt,
+      createdAt: doc.createdAt,
+    })
+
+    if (!result.success) {
+      console.error('Project inválido detectado:', result.error)
+      throw new Error('Project inválido detectado, veja o log para detalhes')
+    }
+
+    return result.data
+  }
 }
