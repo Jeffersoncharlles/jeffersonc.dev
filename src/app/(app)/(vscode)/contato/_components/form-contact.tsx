@@ -5,7 +5,6 @@ import { Send } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import z from 'zod'
 import { Button } from '@/components/UI/button'
-import { CodeBlock } from '@/components/UI/code-block'
 
 const contactEmailSchema = z.object({
   email: z.string().email(),
@@ -14,11 +13,7 @@ const contactEmailSchema = z.object({
 })
 
 export const FormContact = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { isSubmitting, errors },
-  } = useForm<z.infer<typeof contactEmailSchema>>({
+  const { register } = useForm<z.infer<typeof contactEmailSchema>>({
     resolver: zodResolver(contactEmailSchema),
   })
 
@@ -69,7 +64,7 @@ export const FormContact = () => {
             </span>
             <textarea
               placeholder="Hello Jefferson, I'd like to discuss a project..."
-              className="bg-transparent border-none outline-none text-sm text-foreground w-full min-h-[200px] resize-none placeholder:text-white/20 leading-relaxed"
+              className="bg-transparent border-none outline-none text-sm text-foreground w-full min-h-50 resize-none placeholder:text-white/20 leading-relaxed"
               {...register('message', { required: true })}
             />
           </div>

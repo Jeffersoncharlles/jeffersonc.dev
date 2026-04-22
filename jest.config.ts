@@ -10,6 +10,9 @@ const config = createJestConfig({
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@payload-config$': '<rootDir>/src/tests/mocks/payload-config.ts',
+    '^@payloadcms/storage-s3$': '<rootDir>/src/tests/mocks/mock-s3-storage.ts',
+    '^@payloadcms/storage-s3/client$':
+      '<rootDir>/src/tests/mocks/mock-s3-storage.ts',
   },
   coveragePathIgnorePatterns: [
     '/node_modules/',
