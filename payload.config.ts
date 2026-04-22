@@ -1,5 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { s3Storage } from '@payloadcms/storage-s3'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -46,6 +47,17 @@ const getAllowedOrigins = (url: string): string[] => {
   }
 }
 
+const getGenerateFileUrl = ({
+  filename,
+  prefix,
+}: {
+  filename: string
+  prefix?: string
+}) => {
+  const key = prefix ? `${prefix}/${filename}` : filename
+  return `${env.S3_PUBLIC_URL}/${key}`
+}
+
 const allowedOrigins = getAllowedOrigins(env.NEXT_PUBLIC_SERVER_URL)
 
 export default buildConfig({
@@ -85,6 +97,27 @@ export default buildConfig({
       key: 'seed-db',
       scriptPath: path.resolve(dirname, 'seed-db-real.ts'),
     },
+  ],
+  plugins: [
+    s3Storage({
+      enabled: Boolean(env.S3_BUCKET_NAME),
+      collections: {
+        media: {
+          disablePayloadAccessControl: true,
+          generateFileURL: getGenerateFileUrl,
+        },
+      },
+      bucket: env.S3_BUCKET_NAME,
+      config: {
+        credentials: {
+          accessKeyId: env.S3_BUCKET_ID,
+          secretAccessKey: env.S3_ACCESS_KEY,
+        },
+        region: 'auto',
+        endpoint: env.S3_ENDPOINT,
+        forcePathStyle: true,
+      },
+    }),
   ],
 
   typescript: {

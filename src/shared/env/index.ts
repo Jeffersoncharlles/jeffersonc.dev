@@ -14,6 +14,12 @@ const envSchema = z.object({
     .transform((value) => value === 'true')
     .optional(),
   PAYLOAD_COOKIE_PREFIX: z.string().default('payload'),
+  RESEND_API_KEY: z.string().optional(),
+  S3_BUCKET_NAME: z.string(),
+  S3_ACCESS_KEY: z.string(),
+  S3_BUCKET_ID: z.string(),
+  S3_ENDPOINT: z.string().url('Invalid S3 endpoint URL').optional(),
+  S3_PUBLIC_URL: z.string().url('Invalid S3 public URL').optional(),
 })
 
 export const env = envSchema.parse(process.env)

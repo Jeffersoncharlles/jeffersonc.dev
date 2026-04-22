@@ -50,4 +50,24 @@ describe('ProjectList', () => {
 
     expect(richTextContents[1]).toBeInTheDocument()
   })
+
+  it('should render details page with project information', async () => {
+    await makeSut()
+
+    const clickableItems = screen.getAllByRole('link')
+
+    expect(clickableItems[0]).toHaveAttribute(
+      'href',
+      `/projects/${mockProjectsData[0].id}?title=${encodeURIComponent(
+        mockProjectsData[0].title,
+      )}`,
+    )
+
+    expect(clickableItems[1]).toHaveAttribute(
+      'href',
+      `/projects/${mockProjectsData[1].id}?title=${encodeURIComponent(
+        mockProjectsData[1].title,
+      )}`,
+    )
+  })
 })
