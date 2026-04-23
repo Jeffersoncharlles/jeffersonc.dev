@@ -14,7 +14,8 @@ const envSchema = z.object({
     .transform((value) => value === 'true')
     .optional(),
   PAYLOAD_COOKIE_PREFIX: z.string().default('payload'),
-  RESEND_API_KEY: z.string().optional(),
+  RESEND_MAIL_API_KEY: z.string().optional(),
+  RESEND_API_EMAIL: z.string().email().optional(),
   S3_BUCKET_NAME: z.string(),
   S3_ACCESS_KEY: z.string(),
   S3_BUCKET_ID: z.string(),
