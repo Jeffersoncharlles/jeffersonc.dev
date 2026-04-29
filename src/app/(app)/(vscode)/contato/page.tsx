@@ -30,32 +30,6 @@ const ContactPage = () => {
           </div>
 
           <FormContact />
-
-          {/* Alternative Contact Info */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-6 rounded-xl border border-white/5 bg-white/5 flex flex-col gap-2">
-              <div className="flex items-center gap-2 text-dracula-purple mb-1">
-                <Mail className="w-4 h-4" />
-                <span className="text-xs font-bold uppercase tracking-wider">
-                  Direct Email
-                </span>
-              </div>
-              <p className="text-sm text-foreground">
-                jefferson.charlles@example.com
-              </p>
-            </div>
-            <div className="p-6 rounded-xl border border-white/5 bg-white/5 flex flex-col gap-2">
-              <div className="flex items-center gap-2 text-dracula-green mb-1">
-                <User className="w-4 h-4" />
-                <span className="text-xs font-bold uppercase tracking-wider">
-                  Socials
-                </span>
-              </div>
-              <p className="text-sm text-foreground">
-                Check the "Socials" tab in README.md
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </div>

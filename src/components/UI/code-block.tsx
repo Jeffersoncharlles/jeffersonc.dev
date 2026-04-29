@@ -95,7 +95,7 @@ export const CodeBlock = ({
           '[&_pre_.indent::before]:bg-current',
           //até aqui é para as linhas de indentação
         )}
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: true - we trust the output from shiki
         dangerouslySetInnerHTML={{ __html: parsedCode }}
       />
     </div>

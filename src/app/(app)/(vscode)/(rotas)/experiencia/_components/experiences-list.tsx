@@ -1,29 +1,5 @@
-import { format, isValid, parseISO } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
-
 import { makeGetExperience } from '@/core/infra/services/experience-services'
-
-const formatMonthYear = (value: string) => {
-  const date = parseISO(value)
-
-  if (!isValid(date)) {
-    return null
-  }
-
-  return format(date, 'MMM yyyy', { locale: ptBR })
-}
-
-const formatExperiencePeriod = (startDate: string, endDate?: string | null) => {
-  const start = formatMonthYear(startDate)
-
-  if (!start) {
-    return 'Data inválida'
-  }
-
-  const end = endDate ? formatMonthYear(endDate) : null
-
-  return `${start} até ${end || 'o momento'}`
-}
+import { formatExperiencePeriod } from '@/shared/utils/format-experience-period'
 
 export const ExperiencesList = async () => {
   const experience = await makeGetExperience().execute()

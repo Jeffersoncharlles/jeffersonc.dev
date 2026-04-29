@@ -1,9 +1,9 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { s3Storage } from '@payloadcms/storage-s3'
-import path from 'path'
 import { buildConfig } from 'payload'
-import { fileURLToPath } from 'url'
 
 // Collections
 import { Blog } from '@/core/infra/cms/collections/Blog'

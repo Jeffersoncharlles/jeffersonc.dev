@@ -55,7 +55,7 @@ export default function VSCodeLayout({
       <div className="hidden md:flex lg:hidden w-full justify-center items-center relative z-10">
         <IpadMockup>{uiContent}</IpadMockup>
       </div>
-      <div className="flex md:hidden w-full justify-center items-center relative z-10">
+      <div className="flex md:hidden w-full justify-center items-center relative z-10 my-2">
         <IphoneMockup>{uiContent}</IphoneMockup>
       </div>
     </div>
