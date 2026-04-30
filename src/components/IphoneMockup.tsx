@@ -1,11 +1,11 @@
-import type React from "react";
+import type React from 'react'
 
 export function IphoneMockup({
   children,
-  className = "",
+  className = '',
 }: {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
 }) {
   return (
     <div
@@ -14,7 +14,7 @@ export function IphoneMockup({
       <div className="absolute bg-[rgba(255,255,255,0.05)] blur-[50px] inset-[-80px] opacity-50 rounded-[12px]" />
 
       {/* Device Frame */}
-      <div className="content-stretch flex h-[820px] items-center justify-center overflow-clip p-2 relative rounded-[54px] shadow-[0px_0px_0px_2px_var(--device-frame-outer),0px_0px_0px_4px_var(--device-frame-inner)] shrink-0 w-[390px] max-w-[98vw] scale-[0.9] sm:scale-100 transform origin-center">
+      <div className="content-stretch flex h-[720px] items-center justify-center overflow-clip p-2 relative rounded-[54px] shadow-[0px_0px_0px_2px_var(--device-frame-outer),0px_0px_0px_4px_var(--device-frame-inner)] shrink-0 w-[390px] max-w-[98vw] scale-[0.9] sm:scale-100 transform origin-center">
         <div
           aria-hidden="true"
           className="absolute bg-device-bg inset-0 pointer-events-none rounded-[54px]"
@@ -30,7 +30,7 @@ export function IphoneMockup({
           className="absolute inset-0 rounded-[54px] pointer-events-none"
           style={{
             backgroundImage:
-              "linear-gradient(154.99999978261616deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 50%)",
+              'linear-gradient(154.99999978261616deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 50%)',
           }}
         />
 
@@ -49,5 +49,5 @@ export function IphoneMockup({
         <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_0px_0px_12px_0px_rgba(255,255,255,0.05)] z-20" />
       </div>
     </div>
-  );
+  )
 }
