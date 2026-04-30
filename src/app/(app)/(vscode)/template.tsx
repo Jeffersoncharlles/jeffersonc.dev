@@ -1,13 +1,17 @@
 'use client'
 import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
 export default function VSCodeTemplate({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname()
+
   return (
     <motion.div
+      key={pathname}
       // Animação mais seca e técnica, como um editor real
       initial={{ opacity: 0, x: -5 }}
       animate={{ opacity: 1, x: 0 }}
