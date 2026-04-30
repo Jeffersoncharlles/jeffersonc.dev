@@ -1,8 +1,8 @@
-import { FileJson, Mail, User } from 'lucide-react'
 import Breadcrumbs from '@/components/breadcrumbs'
 import TabsBarWrapper from '@/components/tabs-bar-wrapper'
 
 import { FormContact } from './_components/form-contact'
+import { MethodLayoutForm } from './_components/method-layout-form'
 
 const ContactPage = () => {
   return (
@@ -17,16 +17,14 @@ const ContactPage = () => {
           <div className="flex flex-col gap-2 justify-between md:flex-row items-start md:items-center">
             <div>
               <h1 className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-2xl md:text-3xl text-white tracking-tight">
-                Contact / Send Email
+                Contato
               </h1>
-              <p className="font-['Liberation_Mono:Regular',sans-serif] text-sm text-dracula-cyan opacity-80">
-                Let's build something together.
+              <p className="font-['Liberation_Mono:Regular',sans-serif] text-sm text-dracula-cyan opacity-80 pt-2">
+                Quer enviar um email? responderei o mais breve possível!
               </p>
             </div>
 
-            <div className="">
-              <FileJson />
-            </div>
+            <MethodLayoutForm />
           </div>
 
           <FormContact />
