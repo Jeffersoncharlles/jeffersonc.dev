@@ -11,7 +11,7 @@ export function IpadMockup({
     <div
       className={`bg-transparent content-stretch flex flex-col items-center relative shadow-[0px_2px_4px_0px_rgba(226,226,226,0.1),0px_40px_80px_0px_rgba(0,0,0,0.5)] rounded-[48px] ${className}`}
     >
-      <div className="w-full max-w-[1024px] h-[500px] sm:h-[650px] md:h-[768px] overflow-clip relative rounded-[48px] shrink-0 border border-white/5">
+      <div className="w-full max-w-[1024px] h-[768px] overflow-clip relative rounded-[48px] shrink-0 border border-white/5">
         <div
           aria-hidden="true"
           className="absolute bg-device-bg inset-0 pointer-events-none rounded-[48px]"

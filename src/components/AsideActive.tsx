@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Bug,
@@ -8,11 +8,11 @@ import {
   Puzzle,
   Search,
   Settings,
-} from "lucide-react";
+} from 'lucide-react'
 
 export function AsideActive() {
   return (
-    <div className="w-[56px] h-full bg-black/10 border-r border-white/5 flex flex-col items-center py-6 shrink-0 relative z-20">
+    <div className="w-14 h-full bg-black/10 border-r border-white/5 flex flex-col items-center py-6 shrink-0 relative z-20">
       {/* Top Icons */}
       <div className="flex flex-col gap-6 w-full items-center">
         {/* Active Icon (Files) */}
@@ -81,5 +81,5 @@ export function AsideActive() {
         </div>
       </div>
     </div>
-  );
+  )
 }
