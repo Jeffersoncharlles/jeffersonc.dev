@@ -8,13 +8,11 @@ export function IphoneMockup({
   className?: string
 }) {
   return (
-    <div
-      className={`content-stretch flex flex-col items-center justify-center relative ${className}`}
-    >
-      <div className="absolute bg-[rgba(255,255,255,0.05)] blur-[50px] inset-[-80px] opacity-50 rounded-[12px]" />
+    <div className={` ${className}`}>
+      {/* <div className="absolute bg-[rgba(255,255,255,0.05)] blur-[50px] inset-[-80px] opacity-50 rounded-[12px]" /> */}
 
       {/* Device Frame */}
-      <div className="content-stretch flex h-[840px] items-center justify-center overflow-clip p-2 relative rounded-[54px] shadow-[0px_0px_0px_2px_var(--device-frame-outer),0px_0px_0px_4px_var(--device-frame-inner)] shrink-0 w-[390px] max-w-[98vw] scale-[0.9] sm:scale-100 transform origin-center">
+      <div className=" flex h-[760px]  items-center justify-center overflow-clip p-2 relative rounded-[54px] shadow-[0px_0px_0px_2px_var(--device-frame-outer),0px_0px_0px_4px_var(--device-frame-inner)] shrink-0 w-[390px] max-w-[98vw] scale-[0.9] sm:scale-100 transform origin-center">
         <div
           aria-hidden="true"
           className="absolute bg-device-bg inset-0 pointer-events-none rounded-[54px]"

@@ -237,7 +237,10 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--muted-foreground) var(--background);
+  /* scrollbar-gutter: stable; */
 }
+
+
 
 *::-webkit-scrollbar {
   width: 12px;
