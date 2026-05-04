@@ -27,20 +27,20 @@ export const AsideContent = () => {
         defaultOpen
       >
         <FileItem.Root asChild>
-          <Link href="/">
+          <Link href="/" scroll={false}>
             <LinkIcon size={16} className="text-dracula-cyan" />
             <FileItem.Title>README.md</FileItem.Title>
           </Link>
         </FileItem.Root>
 
         <FileItem.Root asChild>
-          <Link href="/social">
+          <Link href="/social" scroll={false}>
             <QrCode size={16} className="text-dracula-green" />
             <FileItem.Title>social</FileItem.Title>
           </Link>
         </FileItem.Root>
         <FileItem.Root asChild>
-          <Link href="/setup">
+          <Link href="/setup" scroll={false}>
             <Laptop size={16} className="text-dracula-green" />
             <FileItem.Title>setup</FileItem.Title>
           </Link>
@@ -55,7 +55,7 @@ export const AsideContent = () => {
         defaultOpen
       >
         <FileItem.Root asChild>
-          <Link href="/academica">
+          <Link href="/academica" scroll={false}>
             <Award size={16} className="text-dracula-orange" />
             <FileItem.Title>academica</FileItem.Title>
           </Link>
@@ -70,7 +70,7 @@ export const AsideContent = () => {
         defaultOpen
       >
         <FileItem.Root asChild>
-          <Link href="/experiencia">
+          <Link href="/experiencia" scroll={false}>
             <Network size={16} className="text-dracula-yellow" />
             <FileItem.Title>experiência</FileItem.Title>
           </Link>
@@ -85,7 +85,7 @@ export const AsideContent = () => {
         defaultOpen
       >
         <FileItem.Root asChild>
-          <Link href="/projects">
+          <Link href="/projects" scroll={false}>
             <Code size={16} className="text-dracula-pink" />
             <FileItem.Title>projects</FileItem.Title>
           </Link>
@@ -100,7 +100,7 @@ export const AsideContent = () => {
       </FileItem.Root>
 
       <FileItem.Root asChild>
-        <Link href="/contato">
+        <Link href="/contato" scroll={false}>
           <Mail size={16} className="text-dracula-cyan" />
           <FileItem.Title>contato.tsx</FileItem.Title>
         </Link>
