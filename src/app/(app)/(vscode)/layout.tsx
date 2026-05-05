@@ -24,7 +24,7 @@ export default function VSCodeLayout({
   const uiContent = (
     <>
       <Header onMenuClick={toggleMobileAside} isMenuOpen={isMobileAsideOpen} />
-      <div className="flex flex-1 overflow-hidden relative">
+      <div className="flex flex-1 overflow-y-auto relative">
         <Aside isMobileOpen={isMobileAsideOpen} />
 
         {isMobileAsideOpen && (

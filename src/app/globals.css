@@ -237,7 +237,7 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--muted-foreground) var(--background);
-  /* scrollbar-gutter: stable; */
+  scrollbar-gutter: stable;
 }
 
 
