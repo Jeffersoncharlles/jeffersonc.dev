@@ -10,6 +10,7 @@ type ArticleCardProps = {
     markdown: string
     publishedAt?: string | null
   }
+  isFeatured?: boolean
 }
 
 const categoryLabel: Record<ArticleCardProps['article']['category'], string> = {
@@ -18,7 +19,7 @@ const categoryLabel: Record<ArticleCardProps['article']['category'], string> = {
   career: 'Carreira',
 }
 
-export const ArticleListCard = (props: ArticleCardProps) => {
+export const ArticleListCard = ({ article, isFeatured }: ArticleCardProps) => {
   const summarize = (
     description: string | null | undefined,
     markdown: string,
@@ -36,27 +37,52 @@ export const ArticleListCard = (props: ArticleCardProps) => {
 
   return (
     <Link
-      key={props.article.id}
-      href={`/blog/${props.article.slug}`}
-      className="group rounded-2xl border border-white/10 bg-card/50 p-5 transition-colors hover:border-dracula-cyan/40"
+      key={article.id}
+      href={`/blog/${article.slug}`}
+      className="group flex flex-col gap-4 pb-16 border-b border-white/5 transition-opacity hover:opacity-80"
     >
-      <div className="mb-3 flex items-center justify-between gap-3">
-        <span className="rounded-md bg-dracula-cyan/10 px-2 py-1 text-xs font-bold uppercase tracking-wide text-dracula-cyan">
-          {categoryLabel[props.article.category]}
+      <div className="flex items-center justify-between gap-3">
+        <span
+          className={`text-[10px] font-bold uppercase tracking-widest ${
+            isFeatured ? 'text-dracula-pink' : 'text-dracula-cyan'
+          }`}
+        >
+          {categoryLabel[article.category]}
         </span>
-        <span className="text-xs text-muted-foreground">
-          {props.article.publishedAt
-            ? new Date(props.article.publishedAt).toLocaleDateString('pt-BR')
-            : 'Sem data'}
+        <span className="text-xs text-muted-foreground/60 font-medium">
+          {article.publishedAt
+            ? new Date(article.publishedAt).toLocaleDateString('en-US', {
+                month: 'short',
+                day: '2-digit',
+              })
+            : 'Feb 15'}{' '}
+          • 12 Min Read
         </span>
       </div>
 
-      <h2 className="mb-2 font-['Space_Grotesk:Bold',sans-serif] text-xl font-bold text-foreground group-hover:text-dracula-cyan transition-colors">
-        {props.article.title}
+      <h2
+        className={`font-['Space_Grotesk:Bold',sans-serif] font-bold text-foreground transition-colors ${
+          isFeatured ? 'text-3xl md:text-4xl' : 'text-2xl md:text-3xl'
+        }`}
+      >
+        {isFeatured ? (
+          <>
+            {article.title.split(' ').slice(0, -1).join(' ')}{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-dracula-purple to-dracula-pink">
+              {article.title.split(' ').pop()}
+            </span>
+          </>
+        ) : (
+          article.title
+        )}
       </h2>
 
-      <p className="font-['Inter:Regular',sans-serif] text-sm leading-6 text-muted-foreground md:text-base">
-        {summarize(props.article.description, props.article.markdown)}
+      <p
+        className={`font-['Inter:Regular',sans-serif] text-muted-foreground max-w-2xl leading-relaxed ${
+          isFeatured ? 'text-lg' : 'text-base'
+        }`}
+      >
+        {summarize(article.description, article.markdown)}
       </p>
     </Link>
   )

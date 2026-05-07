@@ -1,4 +1,6 @@
 import type React from 'react'
+import { BlogHeader } from '@/app/_components/header'
+import { BlogFooter } from '@/app/_components/footer'
 
 export default function BlogLayout({
   children,
@@ -6,8 +8,10 @@ export default function BlogLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="w-full min-h-screen h-full bg-blog-mobile-bg md:bg-blog-bg overflow-y-auto relative">
-      {children}
+    <div className="w-full min-h-screen flex flex-col bg-blog-mobile-bg md:bg-blog-bg overflow-y-auto relative">
+      <BlogHeader />
+      <main className="flex-1 pt-32 md:pt-40 pb-20">{children}</main>
+      <BlogFooter />
     </div>
   )
 }

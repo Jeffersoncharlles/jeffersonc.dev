@@ -1,6 +1,8 @@
 'use client'
 
 import { Menu, PanelBottom, PanelLeft, Search } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 type HeaderProps = {
   onMenuClick?: () => void
@@ -35,16 +37,6 @@ export function Header({ onMenuClick, isMenuOpen = false }: HeaderProps) {
         </div>
       </div>
 
-      {/* Center: Search Bar */}
-      {/* <div className="absolute left-1/2 -translate-x-1/2 hidden lg:block">
-        <div className="flex items-center gap-2 bg-black/20 border border-white/10 px-16 py-1.5 rounded-xl cursor-pointer hover:bg-black/30 hover:border-white/20 transition-colors">
-          <Search size={14} className="text-foreground/60" />
-          <span className="text-[11px] text-foreground/60 tracking-wide font-normal">
-            Search (Ctrl+P)
-          </span>
-        </div>
-      </div> */}
-
       {/* Right side: Panel Controls */}
       <div className="flex items-center gap-3 md:gap-4">
         <PanelLeft
@@ -57,5 +49,58 @@ export function Header({ onMenuClick, isMenuOpen = false }: HeaderProps) {
         />
       </div>
     </header>
+  )
+}
+
+export function BlogHeader() {
+  const pathname = usePathname()
+
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '#', label: 'Categoria' },
+    { href: '/blog', label: 'Blog' },
+  ]
+
+  return (
+    <div className="fixed top-6 left-1/2 -translate-x-1/2 w-full max-w-4xl px-4 z-50">
+      <nav className="backdrop-blur-md bg-blog-bg/70 border border-white/5 rounded-xl px-6 py-3 flex items-center justify-between shadow-2xl">
+        <div className="flex items-center gap-8">
+          <Link
+            href="/"
+            className="font-['Space_Grotesk:Bold',sans-serif] font-bold text-xl text-dracula-purple tracking-tight"
+          >
+            jeffersonc
+          </Link>
+          <div className="flex items-center gap-1">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={`px-4 py-2 rounded-xl text-sm font-bold tracking-tight transition-colors ${
+                    isActive
+                      ? 'text-dracula-purple'
+                      : 'text-muted-foreground/80 hover:text-foreground'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <div className="w-px h-6 bg-white/10 mx-2" />
+          <button
+            type="button"
+            className="p-2 rounded-xl hover:bg-white/5 transition-colors text-muted-foreground/80 hover:text-foreground"
+          >
+            <Search size={18} />
+          </button>
+        </div>
+      </nav>
+    </div>
   )
 }

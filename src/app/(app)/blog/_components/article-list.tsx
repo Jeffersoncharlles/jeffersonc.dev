@@ -13,9 +13,13 @@ export const ArticleList = async () => {
   }
 
   return (
-    <section className="flex flex-col gap-5">
-      {articles.map((post) => (
-        <ArticleListCard key={post.id} article={post} />
+    <section className="flex flex-col gap-16 md:gap-24">
+      {articles.map((post, index) => (
+        <ArticleListCard
+          key={post.id}
+          article={post}
+          isFeatured={index === 0}
+        />
       ))}
 
       {articles.length === 0 && (
