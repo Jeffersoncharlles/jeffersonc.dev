@@ -56,7 +56,7 @@ export class PayloadBlogRepository implements BlogRepository {
 
       if (!result.success) {
         console.error('article is invalid :', result.error)
-        throw new Error('article is invalid ')
+        throw new Error('article is invalid')
       }
 
       return result.data

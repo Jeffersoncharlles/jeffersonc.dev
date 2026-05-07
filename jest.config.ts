@@ -5,7 +5,6 @@ const config = createJestConfig({
 })({
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
-  transform: {},
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
@@ -32,6 +31,7 @@ const config = createJestConfig({
     '<rootDir>/.next/',
     '<rootDir>/e2e/',
   ],
+  transformIgnorePatterns: ['/node_modules/(?!@payloadcms|payload|@lexical)'],
 })
 
 export default config
