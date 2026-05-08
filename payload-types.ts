@@ -301,8 +301,7 @@ export interface Blog {
   title: string;
   slug?: string | null;
   category: 'frontend' | 'backend' | 'career';
-  description?: string | null;
-  nameOfYourRichTextField?: {
+  content?: {
     root: {
       type: string;
       children: {
@@ -317,7 +316,8 @@ export interface Blog {
     };
     [k: string]: unknown;
   } | null;
-  markdown: string;
+  description?: string | null;
+  markdown?: string | null;
   publishedAt: string;
   updatedAt: string;
   createdAt: string;
@@ -528,8 +528,8 @@ export interface BlogSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   category?: T;
+  content?: T;
   description?: T;
-  nameOfYourRichTextField?: T;
   markdown?: T;
   publishedAt?: T;
   updatedAt?: T;

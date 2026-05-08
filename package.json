@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "postinstall": "pnpm payload:fix",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "payload:fix": "pnpm payload generate:importmap && pnpm payload generate:types",
     "seed": "pnpm payload seed-db",
     "build": "next build",

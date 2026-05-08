@@ -1,4 +1,10 @@
-import type { CollectionConfig } from 'payload'
+import {
+  convertLexicalToMarkdown,
+  editorConfigFactory,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical'
+import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import type { CollectionConfig, RichTextField } from 'payload'
 
 const slugify = (value: string) => {
   return value
@@ -52,6 +58,11 @@ export const Blog: CollectionConfig = {
       ],
     },
     {
+      name: 'content',
+      type: 'richText',
+      editor: lexicalEditor(),
+    },
+    {
       name: 'description',
       type: 'textarea',
       label: 'Resumo (opcional)',
@@ -59,8 +70,37 @@ export const Blog: CollectionConfig = {
     {
       name: 'markdown',
       type: 'textarea',
-      required: true,
-      label: 'Conteudo em Markdown',
+      admin: {
+        hidden: true,
+      },
+      hooks: {
+        afterRead: [
+          ({ siblingData, siblingFields }) => {
+            const data: SerializedEditorState = siblingData['content']
+
+            if (!data) {
+              return ''
+            }
+
+            const markdown = convertLexicalToMarkdown({
+              data,
+              editorConfig: editorConfigFactory.fromField({
+                field: siblingFields.find(
+                  (field) => 'name' in field && field.name === 'content',
+                ) as RichTextField,
+              }),
+            })
+
+            return markdown
+          },
+        ],
+        beforeChange: [
+          ({ siblingData }) => {
+            delete siblingData['markdown']
+            return null
+          },
+        ],
+      },
     },
     {
       name: 'publishedAt',
