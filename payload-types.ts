@@ -302,6 +302,21 @@ export interface Blog {
   slug?: string | null;
   category: 'frontend' | 'backend' | 'career';
   description?: string | null;
+  nameOfYourRichTextField?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   markdown: string;
   publishedAt: string;
   updatedAt: string;
@@ -514,6 +529,7 @@ export interface BlogSelect<T extends boolean = true> {
   slug?: T;
   category?: T;
   description?: T;
+  nameOfYourRichTextField?: T;
   markdown?: T;
   publishedAt?: T;
   updatedAt?: T;

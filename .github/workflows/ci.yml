@@ -24,6 +24,16 @@ jobs:
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres?schema=public
       NODE_ENV: test
+      # PayloadCMS
+      PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+      NEXT_PUBLIC_SERVER_URL: http://localhost:3000
+      PAYLOAD_COOKIE_PREFIX: payload
+      # S3 Mock (para testes de integração)
+      S3_BUCKET: test-bucket
+      S3_ACCESS_KEY_ID: test-access-key
+      S3_SECRET_ACCESS_KEY: test-secret-key
+      S3_ENDPOINT: http://localhost:9000
+      S3_PUBLIC_URL: http://localhost:9000/test-bucket
 
     steps:
       - name: Checkout do Repositório
