@@ -47,12 +47,12 @@ export default function VSCodeLayout({
     <div className="h-screen w-screen max-h-screen overflow-clip flex items-center justify-center fixed inset-0">
       <div className="vscode-layout-glow" />
       <section
-        className="hidden  lg:flex w-full max-w-7xl  max-h-270 bg-card backdrop-blur-md border border-border rounded-3xl flex-col overflow-hidden relative z-10"
+        className="hidden  lg:flex w-full max-w-7xl  max-h-216 bg-card backdrop-blur-md border border-border rounded-3xl flex-col overflow-hidden relative z-10"
         style={{ boxShadow: 'var(--shadow-vscode-card)' }}
       >
         {uiContent}
       </section>
-      <div className="hidden md:flex lg:hidden h-full max-h-screen w-full justify-center items-center relative z-10 overflow-hidden">
+      <div className="hidden md:flex lg:hidden h-full max-h-screen w-full justify-center items-center relative z-10 overflow-hidden px-6">
         <IpadMockup>{uiContent}</IpadMockup>
       </div>
       <div className="flex md:hidden h-full max-h-screen w-full justify-center items-center relative z-10 overflow-hidden">

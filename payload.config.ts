@@ -100,18 +100,18 @@ export default buildConfig({
   ],
   plugins: [
     s3Storage({
-      enabled: Boolean(env.S3_BUCKET_NAME),
+      enabled: Boolean(env.S3_BUCKET),
       collections: {
         media: {
           disablePayloadAccessControl: true,
           generateFileURL: getGenerateFileUrl,
         },
       },
-      bucket: env.S3_BUCKET_NAME,
+      bucket: env.S3_BUCKET,
       config: {
         credentials: {
-          accessKeyId: env.S3_BUCKET_ID,
-          secretAccessKey: env.S3_ACCESS_KEY,
+          accessKeyId: env.S3_ACCESS_KEY_ID,
+          secretAccessKey: env.S3_SECRET_ACCESS_KEY,
         },
         region: 'auto',
         endpoint: env.S3_ENDPOINT,
