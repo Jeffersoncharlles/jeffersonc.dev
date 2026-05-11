@@ -44,7 +44,7 @@ export default function VSCodeLayout({
   )
 
   return (
-    <div className="h-screen w-screen max-h-screen overflow-clip flex items-center justify-center fixed inset-0">
+    <div className="h-screen w-screen overflow-clip flex items-center justify-center fixed inset-0">
       <div className="vscode-layout-glow" />
       <section
         className="hidden  lg:flex w-full max-w-7xl  max-h-216 bg-card backdrop-blur-md border border-border rounded-3xl flex-col overflow-hidden relative z-10"
