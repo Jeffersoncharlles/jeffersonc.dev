@@ -28,6 +28,8 @@ const getTopicsFromDescription = (description?: string) => {
     .slice(0, 3)
 }
 
+export const revalidate = 3600
+
 export const AcademicList = async () => {
   const academic = await makeGetAcademic().execute()
 

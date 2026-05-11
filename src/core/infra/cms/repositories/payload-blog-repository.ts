@@ -74,6 +74,8 @@ export class PayloadBlogRepository implements BlogRepository {
       limit: 1,
     })
 
+    console.log('doc :', doc)
+
     if (doc.totalDocs === 0 || !doc.docs[0]) {
       throw new Error('Post não encontrado')
     }
@@ -84,6 +86,7 @@ export class PayloadBlogRepository implements BlogRepository {
       markdown: doc.docs[0].markdown,
       slug: doc.docs[0].slug,
       category: doc.docs[0].category,
+      content: doc.docs[0].content,
       description: doc.docs[0].description,
       publishedAt: doc.docs[0].publishedAt,
       updatedAt: doc.docs[0].updatedAt,

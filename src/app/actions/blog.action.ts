@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache'
 import z from 'zod'
 import { blogSchema } from '@/core/domain/entities/blog'
 import { makeGetBlogArticles } from '@/core/infra/services/blog-services'
@@ -23,6 +24,7 @@ export const getAllArticlesAction = async () => {
         articles: [],
       }
     }
+    revalidatePath('/blog')
 
     return {
       success: true,
