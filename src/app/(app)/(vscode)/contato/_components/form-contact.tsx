@@ -18,7 +18,7 @@ export const FormContact = () => {
   const {
     register,
     handleSubmit,
-    formState: { isLoading, isSubmitting, errors },
+    formState: { isLoading, isSubmitting },
   } = useForm<z.infer<typeof contactEmailSchema>>({
     resolver: zodResolver(contactEmailSchema),
     defaultValues: {

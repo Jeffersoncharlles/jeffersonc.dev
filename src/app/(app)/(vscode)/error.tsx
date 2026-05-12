@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/UI/button'
 
-// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
+// biome-ignore lint/suspicious/noShadowRestrictedNames: <error> is a special prop in Next.js error components
 export default function Error({
   error,
   reset,

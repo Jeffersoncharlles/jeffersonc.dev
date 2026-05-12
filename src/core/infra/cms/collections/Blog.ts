@@ -76,7 +76,7 @@ export const Blog: CollectionConfig = {
       hooks: {
         afterRead: [
           ({ siblingData, siblingFields }) => {
-            const data: SerializedEditorState = siblingData['content']
+            const data: SerializedEditorState = siblingData.content
 
             if (!data) {
               return ''
@@ -96,7 +96,7 @@ export const Blog: CollectionConfig = {
         ],
         beforeChange: [
           ({ siblingData }) => {
-            delete siblingData['markdown']
+            delete siblingData.markdown
             return null
           },
         ],

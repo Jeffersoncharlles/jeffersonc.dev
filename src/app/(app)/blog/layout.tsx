@@ -1,6 +1,6 @@
 import type React from 'react'
-import { BlogHeader } from '@/app/_components/header'
 import { BlogFooter } from '@/app/_components/footer'
+import { BlogHeader } from '@/app/_components/header'
 
 export default function BlogLayout({
   children,
