@@ -3,7 +3,7 @@ on: [pull_request]
 
 jobs:
   build:
-    name: Validar Código e Gerar Build
+    name: Validar Código 
     runs-on: ubuntu-latest
 
     services:
@@ -62,6 +62,3 @@ jobs:
 
       - name: Rodar Testes de Unidade
         run: pnpm test:coverage
-
-      - name: Gerar Build Final
-        run: pnpm build

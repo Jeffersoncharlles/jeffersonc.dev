@@ -42,6 +42,7 @@ next-env.d.ts
 CLAUDE.md
 AGENTS.md
 GEMINI.md
+.github/copilot-instructions.md
 seed-db-real.ts
 
 payload-types.ts
