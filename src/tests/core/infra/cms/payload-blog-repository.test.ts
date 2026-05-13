@@ -44,6 +44,7 @@ describe('PayloadBlogRepository', () => {
       collection: 'blog',
       limit: 50,
       sort: '-publishedAt',
+      depth: 2,
     })
     expect(result).toHaveLength(1)
   })

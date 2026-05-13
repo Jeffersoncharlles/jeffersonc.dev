@@ -32,6 +32,7 @@ export const Icon = ({
 }) => {
   const iconName = toPascalCase(name)
   const DynamicIcon =
+    // biome-ignore lint/performance/noDynamicNamespaceImportAccess: intentional dynamic icon lookup for flexibility
     (LucideIcons[iconName as keyof typeof LucideIcons] as
       | LucideIcon
       | undefined) ?? AppWindow

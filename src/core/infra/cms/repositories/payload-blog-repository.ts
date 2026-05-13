@@ -3,6 +3,8 @@ import { getPayload } from 'payload'
 import type { BlogRepository } from '@/core/application/repositories/blog-repository'
 import { type BlogEntity, blogSchema } from '@/core/domain/entities/blog'
 
+const BLOG_QUERY_DEPTH = 2
+
 export class PayloadBlogRepository implements BlogRepository {
   async findPostById(id: string): Promise<BlogEntity> {
     const payload = await getPayload({ config })
@@ -10,6 +12,7 @@ export class PayloadBlogRepository implements BlogRepository {
     const doc = await payload.findByID({
       collection: 'blog',
       id,
+      depth: BLOG_QUERY_DEPTH,
     })
 
     const result = blogSchema.safeParse({
@@ -39,6 +42,7 @@ export class PayloadBlogRepository implements BlogRepository {
       collection: 'blog',
       limit: 50,
       sort: '-publishedAt',
+      depth: BLOG_QUERY_DEPTH,
     })
 
     return docs.map((doc) => {
@@ -72,7 +76,10 @@ export class PayloadBlogRepository implements BlogRepository {
         slug: { equals: slug },
       },
       limit: 1,
+      depth: BLOG_QUERY_DEPTH,
     })
+
+    console.log('doc :', doc)
 
     if (doc.totalDocs === 0 || !doc.docs[0]) {
       throw new Error('Post não encontrado')
@@ -84,6 +91,7 @@ export class PayloadBlogRepository implements BlogRepository {
       markdown: doc.docs[0].markdown,
       slug: doc.docs[0].slug,
       category: doc.docs[0].category,
+      content: doc.docs[0].content,
       description: doc.docs[0].description,
       publishedAt: doc.docs[0].publishedAt,
       updatedAt: doc.docs[0].updatedAt,

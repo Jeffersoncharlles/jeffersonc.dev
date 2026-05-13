@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import { ExperiencesListSkeleton } from './_components/experienc-list-skeleton'
 import { ExperiencesList } from './_components/experiences-list'
 
-const IntegrationsPage = () => {
+const IntegrationsPage = async () => {
   return (
     <div className="relative flex w-full min-h-full flex-col gap-12 py-8">
       {/* Vertical Timeline Line */}

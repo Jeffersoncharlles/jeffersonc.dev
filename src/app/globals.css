@@ -2,8 +2,8 @@
 
 @theme {
   --background-image-vscode-gradient: linear-gradient(
-    135deg, 
-    rgb(26, 27, 38) 0%, 
+    135deg,
+    rgb(26, 27, 38) 0%,
     rgb(36, 40, 59) 100%
   );
 
@@ -80,7 +80,7 @@
 
   .vscode-layout-glow::before,
   .vscode-layout-glow::after {
-    content: '';
+    content: "";
     position: absolute;
     width: clamp(760px, 82vw, 1240px);
     height: clamp(760px, 82vw, 1240px);
@@ -232,15 +232,12 @@
   }
 }
 
-
 /* Custom Scrollbar */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--muted-foreground) var(--background);
   /* scrollbar-gutter: stable; */
 }
-
-
 
 *::-webkit-scrollbar {
   width: 12px;

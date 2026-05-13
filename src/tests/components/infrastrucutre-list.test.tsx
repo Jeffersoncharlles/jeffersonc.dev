@@ -115,8 +115,8 @@ describe('InfrastructureList', () => {
 
       expect(Object.keys(result)).toContain('Frontend')
       expect(Object.keys(result)).toContain('Backend')
-      expect(result['Frontend']).toHaveLength(2)
-      expect(result['Backend']).toHaveLength(2)
+      expect(result.Frontend).toHaveLength(2)
+      expect(result.Backend).toHaveLength(2)
     })
 
     it('should group items with null/undefined category as "uncategorized"', () => {
@@ -130,7 +130,7 @@ describe('InfrastructureList', () => {
 
       expect(result).toHaveProperty('Frontend')
       expect(result).toHaveProperty('uncategorized')
-      expect(result['uncategorized']).toHaveLength(2)
+      expect(result.uncategorized).toHaveLength(2)
     })
 
     it('should preserve item properties in grouped result', () => {
@@ -141,13 +141,14 @@ describe('InfrastructureList', () => {
 
       const result = groupByCategory(items)
 
-      expect(result['Database'][0]).toHaveProperty('id', '1')
-      expect(result['Database'][0]).toHaveProperty('name', 'PostgreSQL')
-      expect(result['Database'][1]).toHaveProperty('id', '2')
-      expect(result['Database'][1]).toHaveProperty('name', 'MySQL')
+      expect(result.Database[0]).toHaveProperty('id', '1')
+      expect(result.Database[0]).toHaveProperty('name', 'PostgreSQL')
+      expect(result.Database[1]).toHaveProperty('id', '2')
+      expect(result.Database[1]).toHaveProperty('name', 'MySQL')
     })
 
     it('should handle empty array', () => {
+      // biome-ignore lint/suspicious/noExplicitAny: array is typed as any[] for testing purposes
       const items: any[] = []
       const result = groupByCategory(items)
 

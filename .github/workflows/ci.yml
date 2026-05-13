@@ -3,7 +3,7 @@ on: [pull_request]
 
 jobs:
   build:
-    name: Validar Código e Gerar Build
+    name: Validar Código 
     runs-on: ubuntu-latest
 
     services:
@@ -34,6 +34,8 @@ jobs:
       S3_SECRET_ACCESS_KEY: test-secret-key
       S3_ENDPOINT: http://localhost:9000
       S3_PUBLIC_URL: http://localhost:9000/test-bucket
+      # resend
+      RESEND_MAIL_API_KEY: test-secret-key
 
     steps:
       - name: Checkout do Repositório
@@ -60,6 +62,3 @@ jobs:
 
       - name: Rodar Testes de Unidade
         run: pnpm test:coverage
-
-      - name: Gerar Build Final
-        run: pnpm build

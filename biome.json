@@ -13,7 +13,10 @@
       "!.next",
       "!dist",
       "!build",
-      "!**/payload-types.ts"
+      "!**/payload-types.ts",
+      "!seed.ts",
+      "!src/migrations",
+      "!src/app/(payload)"
     ]
   },
   "formatter": {
