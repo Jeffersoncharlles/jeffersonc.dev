@@ -53,8 +53,6 @@ jobs:
 
       - name: Instalar Dependências
         run: pnpm install --frozen-lockfile
-        env:
-          PNPM_ONLY_ALLOW_TRUSTED_SCRIPTS: false
 
       - name: Verificar Estilo (Lint)
         run: pnpm lint
