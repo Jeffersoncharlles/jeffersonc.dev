@@ -81,7 +81,9 @@ export default buildConfig({
     idType: 'uuid',
     pool: {
       connectionString: env.DATABASE_URL,
-      ssl: true,
+      ssl: env.DATABASE_URL.includes('localhost')
+        ? false
+        : { rejectUnauthorized: false },
     },
     push: true,
   }),

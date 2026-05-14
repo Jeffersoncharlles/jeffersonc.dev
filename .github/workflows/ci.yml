@@ -22,20 +22,17 @@ jobs:
           --health-retries 5
 
     env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres?schema=public
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres?sslmode=disable
       NODE_ENV: test
-      # PayloadCMS
-      PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+      PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET || 'qualquer-string-de-32-caracteres-para-teste' }}
       NEXT_PUBLIC_SERVER_URL: http://localhost:3000
       PAYLOAD_COOKIE_PREFIX: payload
-      # S3 Mock (para testes de integração)
       S3_BUCKET: test-bucket
       S3_ACCESS_KEY_ID: test-access-key
       S3_SECRET_ACCESS_KEY: test-secret-key
       S3_ENDPOINT: http://localhost:9000
       S3_PUBLIC_URL: http://localhost:9000/test-bucket
-      # resend
-      RESEND_MAIL_API_KEY: test-secret-key
+      RESEND_MAIL_API_KEY: re_test_123
 
     steps:
       - name: Checkout do Repositório
@@ -47,9 +44,9 @@ jobs:
           node-version: 22.x
 
       - name: Instalar pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4 
         with:
-          version: 9
+          version: 10 
 
       - name: Instalar Dependências
         run: pnpm install --frozen-lockfile
@@ -62,3 +59,9 @@ jobs:
 
       - name: Rodar Testes de Unidade
         run: pnpm test:coverage
+
+      - name: Sincronizar Schema do Banco
+        run: npx payload migrate --force
+
+      - name: Gerar Build Final
+        run: pnpm build

@@ -19,6 +19,12 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "lefthook"
+    ]
+  },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@payloadcms/db-postgres": "3.82.1",

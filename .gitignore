@@ -12,7 +12,8 @@
 
 # testing
 /coverage
-
+playwright-report/
+test-results/
 # next.js
 /.next/
 /out/
@@ -36,6 +37,10 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+
+#nao subir ainda 
+e2e/global-setup.ts
+seed.e2e.ts
 
 # vercel
 .vercel
