@@ -25,7 +25,7 @@ jobs:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres?schema=public
       NODE_ENV: test
       # PayloadCMS
-      PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+      PAYLOAD_SECRET:  ${{ secrets.PAYLOAD_SECRET || 'qualquer-string-de-32-caracteres-para-teste' }}
       NEXT_PUBLIC_SERVER_URL: http://localhost:3000
       PAYLOAD_COOKIE_PREFIX: payload
       # S3 Mock (para testes de integração)
