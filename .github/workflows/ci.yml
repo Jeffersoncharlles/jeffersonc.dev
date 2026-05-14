@@ -61,7 +61,7 @@ jobs:
         run: pnpm test:coverage
 
       - name: Sincronizar Schema do Banco
-        run: npx payload manage db:push
+        run: npx payload migrate:fresh
 
       - name: Gerar Build Final
         run: pnpm build
