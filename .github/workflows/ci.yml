@@ -61,9 +61,7 @@ jobs:
         run: pnpm test:coverage
 
       - name: Sincronizar Schema do Banco
-        run: npx drizzle-kit push
-        env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres?sslmode=disable
+        run: npx payload migrate --force
 
       - name: Gerar Build Final
         run: pnpm build
