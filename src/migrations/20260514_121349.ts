@@ -4,7 +4,7 @@ import {
   sql,
 } from '@payloadcms/db-postgres'
 
-export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
+export async function up({ db }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
    CREATE TYPE "public"."enum_education_degree_type" AS ENUM('bacharelado', 'licenciatura', 'tecnologo');
   CREATE TABLE "experience" (
@@ -48,11 +48,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "blog" DROP COLUMN "author_avatar_id";`)
 }
 
-export async function down({
-  db,
-  payload,
-  req,
-}: MigrateDownArgs): Promise<void> {
+export async function down({ db }: MigrateDownArgs): Promise<void> {
   await db.execute(sql`
    CREATE TABLE "blog_category" (
   	"order" integer NOT NULL,
